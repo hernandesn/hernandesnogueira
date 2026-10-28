@@ -133,3 +133,7 @@ body.plain .g .box{background:#fff6f5;border-color:#f0d4d1;border-left-color:#a3
 .g .shot{margin:12px auto 6px;max-width:260px;text-align:center}
 .g .shot img{width:100%;height:auto;display:block;border-radius:18px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.12)}
 .g .shot figcaption{font-size:.82rem;color:#666;margin-top:6px}
+.links a.feat.c-or{border-left-color:#e07b12;color:#8a4a06}.links a.feat.c-or svg{fill:#e07b12}
+.links a.feat.c-bl{border-left-color:#2d5fa8;color:#1f437a}.links a.feat.c-bl svg{fill:#2d5fa8}
+.links a.feat.c-rd{border-left-color:#a3201a;color:#7a120e}.links a.feat.c-rd svg{fill:#a3201a}
+.links a.feat.c-pu{border-left-color:#6b3fa0;color:#4b2a73}.links a.feat.c-pu svg{fill:#6b3fa0}

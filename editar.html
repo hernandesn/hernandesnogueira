@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de edição</title>
+<link rel="icon" href="assets/favicon.png" type="image/png">
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f3f4f6;color:#1b1b1b}
+header{position:sticky;top:0;z-index:5;background:#1f2937;color:#fff;display:flex;align-items:center;gap:8px;padding:10px 14px}
+header h1{font-size:16px;margin:0;flex:1}header button{font-size:13px}
+main{max-width:1100px;margin:0 auto;padding:14px;display:grid;gap:16px}
+@media(min-width:900px){main.on{grid-template-columns:1fr 400px;align-items:start}#pv{position:sticky;top:60px}}
+.card{background:#fff;border:1px solid #e3e3e3;border-radius:12px;padding:14px 16px}
+.card h2{font-size:15px;margin:0 0 10px}
+label{display:block;font-size:13px;color:#555;margin:10px 0 4px}
+input[type=text],input[type=url],input[type=password],select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font:inherit;background:#fff}
+button{font:inherit;padding:9px 14px;border-radius:8px;border:1px solid #ccc;background:#fff;cursor:pointer}
+button.pri{background:#2f7d4a;color:#fff;border-color:#2f7d4a;font-weight:600}button.pri:disabled{opacity:.5}
+button.sm{padding:6px 9px;font-size:13px}button.dn{color:#a3201a}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.help{font-size:13px;color:#555}.help ol{padding-left:20px}.help li{margin:4px 0}
+.msg{padding:10px 12px;border-radius:8px;margin:0;font-size:14px}.msg.ok{background:#e7f6ec;color:#1f5a33}.msg.er{background:#fdecea;color:#7a120e}.msg.in{background:#eef2ff;color:#2d3a8c}
+#list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.btnrow{border:1px solid #ddd;border-left:5px solid var(--c,#b08a3e);border-radius:10px;background:#fafafa}
+.btnrow.drag{opacity:.6;box-shadow:0 6px 20px rgba(0,0,0,.2);background:#fff}
+.btnrow.off .top input{color:#999;text-decoration:line-through}
+.top{display:flex;align-items:center;gap:6px;padding:6px}
+.hd{touch-action:none;cursor:grab;padding:8px 6px;font-size:20px;color:#888;user-select:none}
+.top svg{width:20px;height:20px;flex:none;fill:var(--c,#b08a3e)}
+.top input{flex:1;min-width:0;padding:8px;font-weight:600}
+.more{padding:0 10px 10px}.more summary{cursor:pointer;font-size:13px;color:#2d5fa8;padding:2px 6px}
+.chk{display:flex;gap:16px;margin-top:10px;font-size:14px}.chk label{display:flex;gap:6px;align-items:center;margin:0;color:#1b1b1b}
+.ph{display:flex;gap:12px;align-items:center}.ph img{width:72px;height:72px;object-fit:cover;border-radius:50%;border:1px solid #ddd}.ph img.cv{width:120px;height:60px;border-radius:8px}
+#thumb{width:160px;border-radius:8px;margin-top:8px;display:none}
+iframe#frame{width:100%;height:760px;border:1px solid #ddd;border-radius:12px;background:#fff}
+.bar{position:sticky;bottom:0;background:#fff;border-top:1px solid #ddd;padding:10px 14px;display:flex;gap:10px;align-items:center;justify-content:flex-end;z-index:5}
+.bar span{flex:1;font-size:13px;color:#555}
+[hidden]{display:none!important}
+code{background:#f1f1f1;padding:1px 4px;border-radius:4px}
+</style>
+</head>
+<body>
+<header><h1>Painel do site</h1><button id="reload" hidden>Recarregar</button><button id="logout" hidden>Sair</button></header>
+
+<section id="login" class="card" style="max-width:640px;margin:16px auto">
+  <h2>Entrar</h2>
+  <p class="help">O painel usa uma <b>chave de acesso do GitHub</b> (token). Ela fica salva só neste navegador. Para criar:</p>
+  <ol class="help">
+    <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (entre na conta <b>hernandesn</b>).</li>
+    <li><b>Token name</b>: <code>Painel do site</code>. <b>Expiration</b>: escolha a validade (ex.: 1 ano / 366 days).</li>
+    <li><b>Resource owner</b>: <code>hernandesn</code>.</li>
+    <li><b>Repository access</b>: marque <b>Only select repositories</b> e escolha <code>hernandesn/hernandesnogueira</code>.</li>
+    <li>Em <b>Permissions → Repository permissions</b>, ache <b>Contents</b> e mude para <b>Read and write</b> (o “Metadata: Read-only” entra sozinho). Não precisa de mais nada.</li>
+    <li>Clique em <b>Generate token</b>, copie o código (começa com <code>github_pat_</code>) e cole abaixo.</li>
+  </ol>
+  <label for="tok">Token</label>
+  <input id="tok" type="password" autocomplete="off" placeholder="github_pat_...">
+  <div class="row" style="margin-top:10px"><button class="pri" id="enter">Entrar</button></div>
+  <p id="lmsg" class="msg er" hidden style="margin-top:10px"></p>
+</section>
+
+<main id="app" hidden>
+ <div id="ed" style="display:grid;gap:16px">
+  <p id="msg" class="msg" hidden></p>
+  <section class="card">
+    <h2>Perfil</h2>
+    <label for="f-name">Nome</label><input id="f-name" type="text">
+    <label for="f-bio">Frase (coloque *asteriscos* na palavra marcada em vermelho)</label><input id="f-bio" type="text">
+    <label>Foto de perfil</label>
+    <div class="ph"><img id="i-av" alt=""><div><input type="file" id="u-av" accept="image/*" hidden><button class="sm" onclick="document.getElementById('u-av').click()">Trocar foto</button><div class="help">Recortada em quadrado 400×400.</div></div></div>
+    <label>Foto de capa</label>
+    <div class="ph"><img id="i-cv" class="cv" alt=""><div><input type="file" id="u-cv" accept="image/*" hidden><button class="sm" onclick="document.getElementById('u-cv').click()">Trocar capa</button><div class="help">Recortada em 1200×600 (2:1).</div></div></div>
+  </section>
+  <section class="card">
+    <h2>Vídeo em destaque</h2>
+    <label for="f-vid">Link do vídeo do YouTube</label><input id="f-vid" type="url" placeholder="https://www.youtube.com/watch?v=...">
+    <img id="thumb" alt="Miniatura do vídeo"><p id="vbad" class="help" hidden style="color:#a3201a">Link do YouTube não reconhecido.</p>
+  </section>
+  <section class="card">
+    <h2>Botões</h2>
+    <p class="help" style="margin-top:0">Arraste pelo ⠿ para mudar a ordem (ou use ↑ ↓). Toque em “Mais opções” para link, ícone e cor.</p>
+    <ul id="list"></ul>
+    <button id="add" style="margin-top:10px">+ Adicionar botão</button>
+  </section>
+ </div>
+ <section id="pv" class="card"><h2>Prévia</h2><iframe id="frame" title="Prévia do site"></iframe></section>
+</main>
+<div class="bar" id="bar" hidden><span id="st">Nenhuma alteração.</span><button class="pri" id="pub" disabled>Publicar</button></div>
+
+<script src="assets/site-render.js"></script>
+<script>
+const R=window.SiteRender, REPO='hernandesn/hernandesnogueira';
+const BR=new URLSearchParams(location.search).get('branch')||'main';
+const API='https://api.github.com/repos/'+REPO;
+const $=id=>document.getElementById(id);
+let tok=localStorage.getItem('gh_tok')||'', data=null, indexHtml='', headSha='', dirty=false, pending={};
+
+function show(el,t,cls){el.textContent=t;el.className='msg '+cls;el.hidden=!t;}
+async function gh(path,opt={}){
+  const r=await fetch(API+path,{...opt,cache:'no-store',headers:{Authorization:'Bearer '+tok,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28',...(opt.body?{'Content-Type':'application/json'}:{})}});
+  if(!r.ok){const e=new Error('HTTP '+r.status);e.status=r.status;try{e.body=await r.json()}catch(_){}throw e;}
+  return r.status===204?null:r.json();
+}
+const dec=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\n/g,'')),c=>c.charCodeAt(0)));
+function errText(e){
+  if(e.status===401)return 'Token inválido ou expirado. Clique em Sair e entre com um token novo.';
+  if(e.status===403)return 'O token não tem permissão de escrita (Contents: Read and write) neste repositório, ou o limite da API foi atingido.';
+  if(e.status===404)return 'Repositório não encontrado para este token. Confira se escolheu hernandesn/hernandesnogueira em "Only select repositories".';
+  if(e.status===409||e.status===422)return 'O site foi alterado em outro lugar enquanto você editava. Clique em Recarregar (suas alterações não salvas serão perdidas).';
+  return 'Erro: '+(e.message||e)+'. Verifique a internet e tente de novo.';
+}
+
+async function login(){
+  $('lmsg').hidden=true;
+  try{
+    const repo=await gh('');
+    if(!repo.permissions||!repo.permissions.push){const e=new Error();e.status=403;throw e;}
+    localStorage.setItem('gh_tok',tok);
+    $('login').hidden=true;$('app').hidden=false;$('app').classList.add('on');$('bar').hidden=false;$('logout').hidden=false;$('reload').hidden=false;
+    await load();
+  }catch(e){show($('lmsg'),errText(e),'er');}
+}
+$('enter').onclick=()=>{tok=$('tok').value.trim();if(tok)login();};
+$('logout').onclick=()=>{localStorage.removeItem('gh_tok');location.reload();};
+$('reload').onclick=()=>{if(!dirty||confirm('Descartar alterações não publicadas?'))load();};
+
+async function load(){
+  show($('msg'),'Carregando…','in');
+  try{
+    const ref=await gh('/git/ref/heads/'+BR);headSha=ref.object.sha;
+    const [j,ix]=await Promise.all([gh('/contents/site.json?ref='+headSha),gh('/contents/index.html?ref='+headSha)]);
+    data=JSON.parse(dec(j.content));indexHtml=dec(ix.content);pending={};
+    fill();setDirty(false);show($('msg'),'','');
+  }catch(e){show($('msg'),errText(e),'er');}
+}
+
+function src(p){return pending[p]?pending[p].url:p;}
+function fill(){
+  $('f-name').value=data.name;$('f-bio').value=data.bio;
+  $('f-vid').value=data.videoId?'https://www.youtube.com/watch?v='+data.videoId:'';
+  $('i-av').src=src(data.avatar);$('i-cv').src=src(data.cover);vthumb();renderList();preview();
+}
+function setDirty(v){dirty=v;$('pub').disabled=!v;$('st').textContent=v?'Alterações não publicadas.':'Nenhuma alteração.';}
+function changed(){setDirty(true);clearTimeout(changed.t);changed.t=setTimeout(preview,250);}
+$('f-name').oninput=e=>{data.name=e.target.value;changed();};
+$('f-bio').oninput=e=>{data.bio=e.target.value;changed();};
+function vthumb(){const id=R.ytId($('f-vid').value);$('thumb').style.display=id?'block':'none';if(id)$('thumb').src='https://i.ytimg.com/vi/'+id+'/hqdefault.jpg';$('vbad').hidden=!!id||!$('f-vid').value.trim();}
+$('f-vid').oninput=e=>{const id=R.ytId(e.target.value);vthumb();if(id){data.videoId=id;changed();}};
+
+function preview(){
+  try{
+    let h=R.apply(indexHtml,data);
+    for(const p in pending)h=h.split('"'+p+'"').join('"'+pending[p].url+'"');
+    const base=location.href.replace(/[^/]*$/,'');
+    h=h.replace('<head>','<head><base href="'+base+'">');
+    $('frame').srcdoc=h;
+  }catch(e){show($('msg'),e.message,'er');}
+}
+
+/* lista de botões */
+function opt(o,v){return Object.keys(o).map(k=>'<option value="'+k+'"'+(k===v?' selected':'')+'>'+R.esc(typeof o[k]==='string'?o[k]:o[k].name)+'</option>').join('');}
+function renderList(){
+  const L=$('list');L.innerHTML='';
+  data.buttons.forEach((b,i)=>{
+    const li=document.createElement('li');li.className='btnrow'+(b.visible===false?' off':'');li.dataset.i=i;
+    li.style.setProperty('--c',(R.COLORS[b.color]||R.COLORS.default).hex);
+    li.innerHTML='<div class="top"><span class="hd" title="Arrastar">⠿</span><svg viewBox="0 0 24 24">'+(R.ICONS[b.icon]||R.ICONS.link)+'</svg><input type="text" aria-label="Nome do botão" value="'+R.esc(b.label)+'"><button class="sm up" aria-label="Subir">↑</button><button class="sm dw" aria-label="Descer">↓</button></div>'+
+      '<details class="more"><summary>Mais opções</summary><label>Link (endereço)</label><input type="url" class="u" value="'+R.esc(b.url)+'" placeholder="https://...">'+
+      '<div class="row" style="margin-top:6px"><div style="flex:1;min-width:130px"><label>Ícone</label><select class="ic">'+opt(R.ICON_NAMES,b.icon)+'</select></div><div style="flex:1;min-width:130px"><label>Cor</label><select class="co">'+opt(R.COLORS,b.color||'default')+'</select></div></div>'+
+      '<div class="chk"><label><input type="checkbox" class="vi"'+(b.visible!==false?' checked':'')+'> Visível</label><label><input type="checkbox" class="nt"'+(b.newTab?' checked':'')+'> Abrir em nova aba</label></div>'+
+      '<div class="row" style="margin-top:10px"><button class="sm dn del">Excluir botão</button></div></details>';
+    const q=s=>li.querySelector(s);
+    q('.top input').oninput=e=>{b.label=e.target.value;changed();};
+    q('.u').oninput=e=>{b.url=e.target.value.trim();changed();};
+    q('.ic').onchange=e=>{b.icon=e.target.value;keepOpen(i);};
+    q('.co').onchange=e=>{b.color=e.target.value;keepOpen(i);};
+    q('.vi').onchange=e=>{b.visible=e.target.checked;keepOpen(i);};
+    q('.nt').onchange=e=>{b.newTab=e.target.checked;changed();};
+    q('.up').onclick=()=>move(i,i-1);q('.dw').onclick=()=>move(i,i+1);
+    q('.del').onclick=()=>{if(confirm('Excluir o botão "'+b.label+'"?')){data.buttons.splice(i,1);renderList();changed();}};
+    dragify(li,q('.hd'));L.appendChild(li);
+  });
+}
+function keepOpen(i){renderList();$('list').children[i].querySelector('details').open=true;changed();}
+function move(a,b){if(b<0||b>=data.buttons.length)return;const [x]=data.buttons.splice(a,1);data.buttons.splice(b,0,x);renderList();changed();}
+$('add').onclick=()=>{data.buttons.push({label:'Novo botão',url:'https://',icon:'link',color:'default',visible:true,newTab:true});renderList();const l=$('list').lastChild;l.querySelector('details').open=true;l.scrollIntoView({behavior:'smooth',block:'center'});l.querySelector('.top input').select();changed();};
+
+function dragify(li,h){
+  h.addEventListener('pointerdown',e=>{
+    e.preventDefault();li.classList.add('drag');const L=$('list');
+    const mv=ev=>{
+      const t=document.elementFromPoint(ev.clientX,ev.clientY);const o=t&&t.closest('.btnrow');
+      if(o&&o!==li&&o.parentNode===L){const r=o.getBoundingClientRect();L.insertBefore(li,ev.clientY<r.top+r.height/2?o:o.nextSibling);}
+      if(ev.clientY<60)scrollBy(0,-12);else if(ev.clientY>innerHeight-80)scrollBy(0,12);
+    };
+    const up=()=>{removeEventListener('pointermove',mv);removeEventListener('pointerup',up);removeEventListener('pointercancel',up);li.classList.remove('drag');
+      const order=[...L.children].map(x=>+x.dataset.i);if(order.some((v,k)=>v!==k)){data.buttons=order.map(k=>data.buttons[k]);renderList();changed();}};
+    addEventListener('pointermove',mv);addEventListener('pointerup',up);addEventListener('pointercancel',up);
+  });
+}
+
+/* fotos */
+async function img(file,W,H){
+  const bm=await createImageBitmap(file);const c=document.createElement('canvas');c.width=W;c.height=H;
+  const s=Math.max(W/bm.width,H/bm.height),w=bm.width*s,h=bm.height*s;
+  c.getContext('2d').drawImage(bm,(W-w)/2,(H-h)/2,w,h);
+  const blob=await new Promise(r=>c.toBlob(r,'image/webp',.85));
+  const b64=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(blob);});
+  return {b64,url:URL.createObjectURL(blob)};
+}
+async function upload(inp,key,W,H,name){
+  const f=inp.files[0];inp.value='';if(!f)return;
+  try{const r=await img(f,W,H);const p='assets/'+name+'-'+Date.now()+'.webp';
+    if(pending[data[key]])delete pending[data[key]];
+    pending[p]=r;data[key]=p;fill();changed();}
+  catch(e){show($('msg'),'Não consegui ler essa imagem. Tente uma foto JPG ou PNG.','er');}
+}
+$('u-av').onchange=e=>upload(e.target,'avatar',400,400,'perfil');
+$('u-cv').onchange=e=>upload(e.target,'cover',1200,600,'capa');
+
+/* publicar: um único commit com Git Data API */
+$('pub').onclick=async()=>{
+  if(data.buttons.some(b=>b.visible!==false&&(!b.label.trim()||!/^(https?:\/\/.+|mailto:.+|[\w./#-]+\.html.*)$/.test(b.url)))){show($('msg'),'Algum botão visível está sem nome ou com link inválido. Confira os links (devem começar com https://).','er');return;}
+  $('pub').disabled=true;$('st').textContent='Publicando…';
+  try{
+    const ref=await gh('/git/ref/heads/'+BR);
+    if(ref.object.sha!==headSha){const e=new Error();e.status=409;throw e;}
+    const commit=await gh('/git/commits/'+headSha);
+    const tree=[{path:'site.json',mode:'100644',type:'blob',content:JSON.stringify(data,null,2)+'\n'},
+                {path:'index.html',mode:'100644',type:'blob',content:R.apply(indexHtml,data)}];
+    for(const p in pending){if(p!==data.avatar&&p!==data.cover)continue;
+      const bl=await gh('/git/blobs',{method:'POST',body:JSON.stringify({content:pending[p].b64,encoding:'base64'})});
+      tree.push({path:p,mode:'100644',type:'blob',sha:bl.sha});}
+    const t=await gh('/git/trees',{method:'POST',body:JSON.stringify({base_tree:commit.tree.sha,tree})});
+    const c=await gh('/git/commits',{method:'POST',body:JSON.stringify({message:'Edição pelo painel',tree:t.sha,parents:[headSha]})});
+    await gh('/git/refs/heads/'+BR,{method:'PATCH',body:JSON.stringify({sha:c.sha})});
+    headSha=c.sha;indexHtml=R.apply(indexHtml,data);pending={};setDirty(false);
+    show($('msg'),'Publicado! O site atualiza em cerca de 1 minuto (se não mudar, atualize a página do site).','ok');
+  }catch(e){show($('msg'),errText(e),'er');setDirty(true);}
+  scrollTo({top:0,behavior:'smooth'});
+};
+addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue='';}});
+if(tok)login();
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+{
+  "name": "Hernandes Nogueira",
+  "bio": "Sou perseguido pelo *sistema*, por isso resolvi sair dele",
+  "avatar": "assets/perfil.webp",
+  "cover": "assets/capa.webp",
+  "videoId": "GZd_Tx3Ijmw",
+  "buttons": [
+    {
+      "label": "Ganhar dinheiro em dólar",
+      "url": "ganhar-em-dolar.html",
+      "icon": "dollar",
+      "color": "green",
+      "visible": true,
+      "newTab": false
+    },
+    {
+      "label": "Conta internacional em dólar",
+      "url": "conta-internacional.html",
+      "icon": "bank",
+      "color": "teal",
+      "visible": true,
+      "newTab": false
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@hernandesnogueira",
+      "icon": "youtube",
+      "color": "default",
+      "visible": true,
+      "newTab": true
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/hernandes.nogueira2/",
+      "icon": "instagram",
+      "color": "default",
+      "visible": true,
+      "newTab": true
+    },
+    {
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@hernandes.nogueira",
+      "icon": "tiktok",
+      "color": "default",
+      "visible": true,
+      "newTab": true
+    },
+    {
+      "label": "X (Twitter)",
+      "url": "https://x.com/HernandesN",
+      "icon": "x",
+      "color": "default",
+      "visible": true,
+      "newTab": true
+    },
+    {
+      "label": "Canal no WhatsApp",
+      "url": "https://www.whatsapp.com/channel/0029VbDxiG511ulIUOJatU2q",
+      "icon": "whatsapp",
+      "color": "default",
+      "visible": true,
+      "newTab": true
+    }
+  ]
+}
