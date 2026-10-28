@@ -91,3 +91,30 @@ body{display:flow-root;margin:0}
 .btc{width:38px;height:38px;flex:none;filter:drop-shadow(0 2px 2px rgba(70,40,10,.35))}
 @media(max-width:600px){.btc{width:28px;height:28px}.namebox{gap:8px}}
 @media(max-width:600px){.namebox h1{white-space:nowrap;font-size:clamp(1.45rem,7.4vw,1.9rem)}}
+.links a.feat{border-left-color:#2f7d4a;background-color:#fdf6e3;font-weight:600;color:#1f5a33}
+.links a.feat svg{fill:#2f7d4a}
+/* guia */
+.g{padding-bottom:20px}.g .back{display:inline-block;margin:6px 0 22px;color:#5a4320;text-decoration:none;font-size:.92rem}
+.g h1{font-size:clamp(1.6rem,6.5vw,2.1rem);text-align:center;margin:0 0 10px;line-height:1.2}
+.g .lead{text-align:center;color:#4a3a22;line-height:1.55;margin:0 0 22px}
+.g .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 22px;padding:0;list-style:none}
+.g .facts li{background:#f6ecd4;border:1px solid #d9c9a6;border-radius:8px;padding:10px 12px;font-size:.9rem;line-height:1.35}
+.g .facts b{display:block;font-size:1.05rem;color:#1f1a12}
+.g .cta{display:block;text-align:center;padding:15px 18px;border-radius:10px;background:#2f7d4a;color:#fff;font-weight:600;text-decoration:none;box-shadow:0 3px 10px rgba(40,60,30,.2);margin:0 0 30px}
+.g .cta.alt{background:#7a4f12}.g .cta.btcb{background:#f7931a;color:#fff}
+.g section{margin:0 0 30px}
+.g h2{font-size:1.2rem;margin:0 0 12px;padding-bottom:6px;border-bottom:1px solid #d9c9a6}
+.g p,.g li{line-height:1.55;color:#2c2417;font-size:.97rem}
+.g ul,.g ol{padding-left:1.25rem;margin:0}.g li{margin:0 0 8px}
+.g .box{background:#fbf3df;border:1px solid #d9c9a6;border-left:4px solid #a3201a;border-radius:8px;padding:14px 16px}
+.g .box h2{border:0;padding:0;color:#7a120e}
+.g .note{font-size:.88rem;color:#5a4a30}
+.g .disc{font-size:.8rem;color:#6a5a40;text-align:center;line-height:1.5;margin-top:10px}
+.g .opts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 34px}
+.g .opt{background:#f6ecd4;border:1px solid #d9c9a6;border-radius:10px;padding:14px 12px;text-align:center;display:flex;flex-direction:column;gap:4px}
+.g .opt span{font-size:.8rem;color:#6a5a40}.g .opt b{font-size:1.15rem;margin-bottom:8px}
+.g .opt .cta{margin:0;padding:11px 8px;font-size:.92rem}
+.g .cta.mr{background:#3a4f7a}
+.g .opt-h{font-size:1.45rem;text-align:center;border:0;margin:10px 0 12px;padding:16px 0 0;border-top:2px solid #b8892d}
+.g .mrc{margin-bottom:24px}
+.g .opt-h + p{margin:0 0 18px}
