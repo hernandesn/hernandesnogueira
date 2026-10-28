@@ -130,3 +130,6 @@ body.plain .g .box{background:#fff6f5;border-color:#f0d4d1;border-left-color:#a3
 .g img.shot{display:block;width:100%;height:auto;border-radius:10px;margin:10px 0 18px;border:1px solid #e3e3e3}
 .g .vid{margin:6px 0 22px}
 .g .vid video{display:block;width:100%;max-width:420px;height:auto;margin:10px auto 8px;border-radius:14px;background:#f4f4f4;border:1px solid #e3e3e3}
+.g .shot{margin:12px auto 6px;max-width:260px;text-align:center}
+.g .shot img{width:100%;height:auto;display:block;border-radius:18px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+.g .shot figcaption{font-size:.82rem;color:#666;margin-top:6px}
