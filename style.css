@@ -118,3 +118,9 @@ body{display:flow-root;margin:0}
 .g .opt-h{font-size:1.45rem;text-align:center;border:0;margin:10px 0 12px;padding:16px 0 0;border-top:2px solid #b8892d}
 .g .mrc{margin-bottom:24px}
 .g .opt-h + p{margin:0 0 18px}
+/* Página do guia: fundo branco para leitura */
+html:has(body.plain){background:#fff}
+body.plain{background:#fff!important;background-image:none!important;color:#1b1b1b}
+body.plain::before,body.plain::after{display:none!important;content:none!important}
+body.plain .g .facts li,body.plain .g .opt{background:#f7f7f7;border-color:#e3e3e3}
+body.plain .g .box{background:#fff6f5;border-color:#f0d4d1;border-left-color:#a3201a}
