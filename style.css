@@ -124,3 +124,8 @@ body.plain{background:#fff!important;background-image:none!important;color:#1b1b
 body.plain::before,body.plain::after{display:none!important;content:none!important}
 body.plain .g .facts li,body.plain .g .opt{background:#f7f7f7;border-color:#e3e3e3}
 body.plain .g .box{background:#fff6f5;border-color:#f0d4d1;border-left-color:#a3201a}
+
+.links a.feat.bg{border-left-color:#00a8b5;color:#00626a}.links a.feat.bg svg{fill:#00a8b5}
+.g .cta.btcb{background:#00a8b5}
+.g img.shot{display:block;width:100%;height:auto;border-radius:10px;margin:10px 0 18px;border:1px solid #e3e3e3}
+.g .vid{margin:6px 0 22px}
