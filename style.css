@@ -129,3 +129,4 @@ body.plain .g .box{background:#fff6f5;border-color:#f0d4d1;border-left-color:#a3
 .g .cta.btcb{background:#00a8b5}
 .g img.shot{display:block;width:100%;height:auto;border-radius:10px;margin:10px 0 18px;border:1px solid #e3e3e3}
 .g .vid{margin:6px 0 22px}
+.g .vid video{display:block;width:100%;max-width:420px;height:auto;margin:10px auto 8px;border-radius:14px;background:#f4f4f4;border:1px solid #e3e3e3}
