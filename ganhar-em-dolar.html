@@ -35,6 +35,15 @@
 .g .topcta{margin:0 0 22px;padding:14px;border:2px solid #00a8b5;border-radius:14px;background:#effbfc}
 .g .topcta p{margin:0 0 10px;text-align:center;font-size:.95rem}
 </style>
+<style>
+.benefit{font-size:14px;margin:6px 0 8px;font-weight:600}
+.bgrem{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#e6fbfb;border:1px solid #00c2c2;border-radius:12px;padding:10px 12px;margin:8px 0 14px;font-size:14px}
+.bgrem a{background:#00c2c2;color:#002b2b;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap}
+#stickyBg{display:none}
+@media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
+#stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
+body{padding-bottom:76px}}
+</style>
 </head>
 <body class="plain">
 <main class="wrap g">
@@ -49,6 +58,7 @@
 
   <div class="topcta">
     <p><b>Comece aqui:</b> abra sua conta internacional em dólar</p>
+    <p class="benefit">✅ Conta em dólar grátis, aberta pelo celular. É nela que você recebe os ganhos das plataformas abaixo.</p>
     <a class="cta bgx" href="#passo1">💳 Abrir minha conta na Bitget Wallet</a>
     <p class="note" style="margin:8px 0 0">Publicidade · Parceria paga · Código de convite: <b>HERNANDES</b></p>
   </div>
@@ -56,7 +66,8 @@
   <h2 class="passo" id="passo1">Passo 1 · Abra sua conta internacional</h2>
   <p class="note" style="margin:0 0 10px"><b>Publicidade · Parceria paga com a Bitget Wallet.</b></p>
   <p>Com a <b>Virtual Account</b> da Bitget Wallet você tem <b>números de conta próprios em dólar (USD) e euro (EUR)</b> dentro da sua carteira. O que você recebe é convertido automaticamente em <b>USDC ou USDT</b>.</p>
-  <a class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" style="margin:0 0 0">💳 Abrir minha conta na Bitget Wallet</a>
+  <p class="benefit">✅ Conta em dólar grátis, aberta pelo celular. É nela que você recebe os ganhos das plataformas abaixo.</p>
+  <a id="mainBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" style="margin:0 0 0">💳 Abrir minha conta na Bitget Wallet</a>
   <p class="code">Código de convite: <b>HERNANDES</b></p>
   <img class="shot" src="assets/bitget/virtual-account.webp" width="800" height="450" alt="Banner oficial da Bitget Wallet: Virtual Account, sua conta em USD e EUR na carteira">
 
@@ -124,6 +135,7 @@
 
   <section id="hub">
     <h2>Hub: grave tarefas e ganhe em dólar</h2>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (Hub)">Abrir conta · Bitget</a></div>
   </section>
   <figure class="shot"><img src="assets/ganhos/hub-gravando-tarefa.webp" alt="Pessoa gravando tarefa na cozinha com o celular na cabeça" loading="lazy" width="700"><figcaption>No Hub você grava tarefas do dia a dia com o celular, em primeira pessoa.</figcaption></figure>
     <p>O <b>Hub</b> (Hub Data Inc., apoiado pela Y Combinator) oferece tarefas pagas de gravação em primeira pessoa para laboratórios de robótica e IA. Aberto para o Brasil, com suporte em português e canal oficial no WhatsApp.</p>
@@ -197,6 +209,7 @@
 
   <section id="micro1">
     <h2>micro1: especialistas treinando IA</h2>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (micro1)">Abrir conta · Bitget</a></div>
     <p>A <b>micro1</b> recruta especialistas para treinar modelos de IA. A entrevista é feita por uma recrutadora de IA, a <b>Zara</b>, na hora que você quiser.</p>
     <ul class="facts">
       <li><b>Em dólar</b>pagamento em USD</li>
@@ -239,6 +252,7 @@
 
   <section id="outlier">
     <h2>Outlier: treino de IA pago em dólar</h2>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (Outlier)">Abrir conta · Bitget</a></div>
     <p>A <b>Outlier</b> é a plataforma de treino de IA da <b>Scale AI</b>, empresa que tem a Meta como sócia (a Meta comprou 49% da Scale AI em 2025). Você avalia e melhora respostas de inteligência artificial pelo computador, no seu horário.</p>
     <ul class="facts">
       <li><b>Toda semana</b>pagamento às terças</li>
@@ -309,6 +323,10 @@ const BITGET_URL = 'https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES';
 document.querySelectorAll('.hubc').forEach(a => a.href = HUB_URL);
 
 </script>
+<div id="stickyBg" class="hide"><a href="#passo1" data-track="Barra fixa Bitget">💳 Abrir conta em dólar · Bitget</a></div>
+<script>(function(){var b=document.getElementById('stickyBg');var t=[document.getElementById('mainBitget'),document.querySelector('.topcta')].filter(Boolean);var v=new Set();
+var o=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?v.add(e.target):v.delete(e.target)});b.classList.toggle('hide',v.size>0||scrollY<200)});t.forEach(function(x){o.observe(x)});
+addEventListener('scroll',function(){b.classList.toggle('hide',v.size>0||scrollY<200)},{passive:true})})();</script>
 <script src="/assets/track.js" defer></script>
 </body>
 </html>
