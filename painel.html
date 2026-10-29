@@ -1,30 +1,5 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Painel · Ganhar em dólar</title>
-<style>body{margin:0;background:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#111}main{max-width:900px;margin:auto;padding:16px}h1{font-size:20px;margin:4px 0 2px}.sub{color:#777;font-size:12px;margin-bottom:12px}
-.f{display:flex;gap:6px;margin-bottom:12px}.f button{flex:1;padding:9px;border:1px solid #ddd;background:#fff;border-radius:10px;font-weight:600}.f button.on{background:#111;color:#fff;border-color:#111}
-.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.c{background:#f4f5f7;border-radius:14px;padding:14px;margin-bottom:10px}.k{font-size:26px;font-weight:700}.l{font-size:12px;color:#666}
-h2{font-size:14px;margin:0 0 8px}.row{display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid #e6e7ea}.row span:first-child{overflow:hidden;text-overflow:ellipsis}
-.bar{height:6px;background:#00c2c7;border-radius:3px;margin-top:3px}svg{width:100%;height:150px}.err{color:#b00;padding:20px}@media(min-width:700px){.g{grid-template-columns:repeat(4,1fr)}}</style></head>
-<body><main><h1>📊 Ganhar em dólar</h1><div class="sub" id="upd">carregando…</div>
-<div class="f"><button data-d="1">Hoje</button><button data-d="7" class="on">7 dias</button><button data-d="30">30 dias</button></div>
-<div id="app"></div></main>
-<script>
-var URL_='https://mraqhjjxxvbhftapjnos.supabase.co/rest/v1/rpc/site_painel',K='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yYXFoamp4eHZiaGZ0YXBqbm9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzMzcyNTMsImV4cCI6MjA2OTkxMzI1M30.S2JfG5Ic2M942LrQDoh7XZ2z_4oKcmV1b2YjLtejQn4';
-var m=location.hash.match(/k=([^&]+)/);if(m){localStorage.setItem('painel_k',m[1]);history.replaceState(null,'',location.pathname);}
-var key=localStorage.getItem('painel_k'),dias=7;
-document.querySelectorAll('.f button').forEach(function(b){b.onclick=function(){document.querySelectorAll('.f button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');dias=+b.dataset.d;load();}});
-function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-function list(t,a,k,v){if(!a.length)return '<div class="c"><h2>'+t+'</h2><div class="l">Sem dados ainda</div></div>';var mx=Math.max.apply(0,a.map(function(x){return x[v]}));
-return '<div class="c"><h2>'+t+'</h2>'+a.map(function(x){return '<div class="row"><span>'+esc(x[k])+'</span><b>'+x[v]+'</b></div><div class="bar" style="width:'+(100*x[v]/mx)+'%"></div>'}).join('')+'</div>'}
-function chart(d){if(!d.length)return '';var W=600,H=150,mx=Math.max(1,Math.max.apply(0,d.map(function(x){return Math.max(x.visitas,x.cliques)}))),n=d.length,bw=W/n;
-return '<div class="c"><h2>Por dia</h2><svg viewBox="0 0 '+W+' '+(H+18)+'">'+d.map(function(x,i){var h=x.visitas/mx*H,h2=x.cliques/mx*H;return '<rect x="'+(i*bw+bw*.15)+'" y="'+(H-h)+'" width="'+bw*.35+'" height="'+h+'" fill="#00c2c7" rx="3"/><rect x="'+(i*bw+bw*.5)+'" y="'+(H-h2)+'" width="'+bw*.35+'" height="'+h2+'" fill="#111" rx="3"/><text x="'+(i*bw+bw/2)+'" y="'+(H+14)+'" font-size="11" text-anchor="middle" fill="#666">'+x.dia.slice(8)+'/'+x.dia.slice(5,7)+'</text><text x="'+(i*bw+bw*.32)+'" y="'+(H-h-3)+'" font-size="11" text-anchor="middle">'+x.visitas+'</text>'}).join('')+'</svg><div class="l">■ <span style="color:#00c2c7">visitas</span> ■ cliques</div></div>'}
-function load(){if(!key){document.getElementById('app').innerHTML='<div class="err">Abra o link com a chave (#k=…).</div>';return;}
-fetch(URL_,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify({p_key:key,p_dias:dias})}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(r){
-var p=r.periodo,t=r.totais,ctr=p.sessoes?Math.round(100*p.sessoes_bitget/p.sessoes):0,dv=r.dispositivo,tv=(dv.mobile+dv.desktop)||1;
-document.getElementById('app').innerHTML='<div class="g"><div class="c"><div class="k">'+p.visitas+'</div><div class="l">Visitas</div></div><div class="c"><div class="k">'+p.sessoes+'</div><div class="l">Pessoas (sessões)</div></div><div class="c"><div class="k">'+p.cliques+'</div><div class="l">Cliques</div></div><div class="c"><div class="k">'+ctr+'%</div><div class="l">Clicaram na Bitget</div></div></div>'
-+'<div class="c l">Hoje: <b>'+t.hoje.visitas+'</b> visitas / <b>'+t.hoje.cliques+'</b> cliques · 7d: <b>'+t['7d'].visitas+'</b> / <b>'+t['7d'].cliques+'</b> · 30d: <b>'+t['30d'].visitas+'</b> / <b>'+t['30d'].cliques+'</b></div>'
-+chart(r.por_dia)+list('Cliques por botão',r.por_alvo,'alvo','cliques')+list('Origem (utm_source)',r.por_utm,'origem','visitas')+list('Site de origem',r.por_referrer,'dominio','visitas')
-+'<div class="c"><h2>Dispositivo</h2><div class="row"><span>📱 Celular</span><b>'+dv.mobile+' ('+Math.round(100*dv.mobile/tv)+'%)</b></div><div class="row"><span>💻 Computador</span><b>'+dv.desktop+' ('+Math.round(100*dv.desktop/tv)+'%)</b></div></div>';
-document.getElementById('upd').textContent='Atualizado '+new Date().toLocaleTimeString('pt-BR')+' · atualiza a cada 60s';
-}).catch(function(){document.getElementById('app').innerHTML='<div class="err">Chave inválida ou erro ao carregar.</div>'})}
-load();setInterval(load,60000);
-</script></body></html>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Painel</title><link rel="stylesheet" href="/assets/painel.css"></head>
+<body><main><h1>📊 Painel do site</h1><div id="p"></div><div class="sub"><a href="/admin.html">Entrar com login</a></div></main>
+<script>var m=location.hash.match(/k=([^&]+)/);if(m){localStorage.setItem('painel_k',m[1]);history.replaceState(null,'',location.pathname);}
+window.Painel={auth:function(){var k=localStorage.getItem('painel_k');return k?Promise.resolve({key:k}):Promise.reject()}};</script>
+<script src="/assets/painel.js"></script><script>Painel.start(document.getElementById('p'))</script></body></html>
