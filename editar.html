@@ -45,19 +45,18 @@ code{background:#f1f1f1;padding:1px 4px;border-radius:4px}
 <header><h1>Painel do site</h1><button id="reload" hidden>Recarregar</button><button id="logout" hidden>Sair</button></header>
 
 <section id="login" class="card" style="max-width:640px;margin:16px auto">
-  <h2>Entrar</h2>
-  <p class="help">O painel usa uma <b>chave de acesso do GitHub</b> (token). Ela fica salva só neste navegador. Para criar:</p>
-  <ol class="help">
-    <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (entre na conta <b>hernandesn</b>).</li>
-    <li><b>Token name</b>: <code>Painel do site</code>. <b>Expiration</b>: escolha a validade (ex.: 1 ano / 366 days).</li>
-    <li><b>Resource owner</b>: <code>hernandesn</code>.</li>
-    <li><b>Repository access</b>: marque <b>Only select repositories</b> e escolha <code>hernandesn/hernandesnogueira</code>.</li>
-    <li>Em <b>Permissions → Repository permissions</b>, ache <b>Contents</b> e mude para <b>Read and write</b> (o “Metadata: Read-only” entra sozinho). Não precisa de mais nada.</li>
-    <li>Clique em <b>Generate token</b>, copie o código (começa com <code>github_pat_</code>) e cole abaixo.</li>
-  </ol>
+  <h2>Conectar ao GitHub</h2>
+  <p class="help"><b>Só na primeira vez neste aparelho.</b> Para salvar as edições no site, cole uma chave do GitHub. Ela fica guardada só neste aparelho.</p>
+  <details class="help"><summary>Como criar a chave (2 min)</summary><ol>
+    <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">este link</a> logado na conta <b>hernandesn</b>.</li>
+    <li>Nome: <code>Painel do site</code>. Validade: 1 ano.</li>
+    <li>Repository access: <b>Only select repositories</b> → <code>hernandesn/hernandesnogueira</code>.</li>
+    <li>Permissions → <b>Contents</b>: <b>Read and write</b>.</li>
+    <li><b>Generate token</b>, copie (começa com <code>github_pat_</code>) e cole abaixo.</li>
+  </ol></details>
   <label for="tok">Token</label>
   <input id="tok" type="password" autocomplete="off" placeholder="github_pat_...">
-  <div class="row" style="margin-top:10px"><button class="pri" id="enter">Entrar</button></div>
+  <div class="row" style="margin-top:10px"><button class="pri" id="enter">Conectar</button></div>
   <p id="lmsg" class="msg er" hidden style="margin-top:10px"></p>
 </section>
 

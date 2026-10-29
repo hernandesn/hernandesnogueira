@@ -7,15 +7,16 @@
 <script>
 var sb=supabase.createClient('https://mraqhjjxxvbhftapjnos.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yYXFoamp4eHZiaGZ0YXBqbm9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzMzcyNTMsImV4cCI6MjA2OTkxMzI1M30.S2JfG5Ic2M942LrQDoh7XZ2z_4oKcmV1b2YjLtejQn4',{auth:{storageKey:'site_admin_auth'}});
 window.Painel={auth:function(){return sb.auth.getSession().then(function(r){var s=r.data.session;if(!s)throw 0;return {token:s.access_token}})}};
-function $(i){return document.getElementById(i)}
+window.Painel=window.Painel;function $(i){return document.getElementById(i)}
 function show(){sb.auth.getSession().then(function(r){if(!r.data.session){$('lf').hidden=false;$('ad').hidden=true;return;}
 sb.rpc('is_site_admin').then(function(x){if(x.data!==true){sb.auth.signOut();$('le').textContent='Esta conta não tem acesso.';$('lf').hidden=false;$('ad').hidden=true;return;}
-$('lf').hidden=true;$('ad').hidden=false;if(!window._st){window._st=1;Painel.start($('v1'));}})})}
+$('lf').hidden=true;$('ad').hidden=false;if(!window._st){window._st=1;try{Painel.start($('v1'));}catch(e){$('v1').innerHTML='<div class="err">Erro ao abrir o painel: '+e.message+'. Recarregue a página.</div>'}}})})}
 $('lf').onsubmit=function(e){e.preventDefault();$('le').textContent='';sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value}).then(function(r){if(r.error){$('le').textContent='E-mail ou senha incorretos.';return;}$('pw').value='';show();})};
 $('fg').onclick=function(e){e.preventDefault();var em=$('em').value.trim();if(!em){$('le').textContent='Digite seu e-mail acima.';return;}sb.auth.resetPasswordForEmail(em,{redirectTo:location.origin+'/admin.html'}).then(function(){$('le').textContent='Se o e-mail existir, enviamos um link para redefinir a senha.'})};
 $('lo').onclick=function(){sb.auth.signOut().then(function(){location.reload()})};
 $('t1').onclick=function(){$('t1').classList.add('on');$('t2').classList.remove('on');$('v1').hidden=false;$('v2').hidden=true};
 $('t2').onclick=function(){$('t2').classList.add('on');$('t1').classList.remove('on');$('v2').hidden=false;$('v1').hidden=true;if(!$('v2').firstChild)$('v2').innerHTML='<iframe class="ed" src="/editar.html"></iframe>'};
 sb.auth.onAuthStateChange(function(ev){if(ev==='PASSWORD_RECOVERY'){var p=prompt('Nova senha (mín. 8 caracteres):');if(p&&p.length>=8)sb.auth.updateUser({password:p}).then(function(r){alert(r.error?'Erro: '+r.error.message:'Senha alterada.')})}});
-show();
-</script></body></html>
+</script>
+<script src="/assets/painel.js"></script>
+<script>show();</script></body></html>
