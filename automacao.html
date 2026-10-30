@@ -1,0 +1,25 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Automação Instagram · Hernandes</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f6f8;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#111}main{max-width:760px;margin:auto;padding:14px}
+h1{font-size:20px;margin:4px 0}h2{font-size:16px;margin:18px 0 8px}.sub{color:#777;font-size:12px}
+.card{background:#fff;border-radius:14px;padding:14px;margin:10px 0;box-shadow:0 1px 3px #0001}
+label{display:block;font-size:12px;font-weight:600;color:#555;margin:10px 0 4px}
+input,textarea,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;font:inherit;font-size:15px;background:#fff}textarea{min-height:80px}
+button{padding:11px 14px;border:0;border-radius:10px;background:#00b8c4;color:#fff;font-weight:700;font-size:15px}button.sec{background:#eef0f3;color:#111}button.red{background:#fde8e8;color:#b00}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.tabs{display:flex;gap:6px;margin:10px 0}.tabs button{flex:1;background:#fff;color:#111;border:1px solid #ddd}.tabs button.on{background:#111;color:#fff}
+.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:12px;background:#eef0f3;margin:2px}.ok{background:#e3f8ec;color:#086}.bad{background:#fde8e8;color:#b00}.warn{background:#fff4d6;color:#8a5a00}
+.step{border:1px solid #e4e6ea;border-radius:12px;padding:10px;margin:10px 0;background:#fafbfc}.delay{font-size:13px;color:#555;text-align:center;margin:6px 0}
+.fun{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font-size:14px}.bar{height:8px;background:#00b8c4;border-radius:4px;margin-top:3px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:6px 4px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}
+.sw{display:flex;align-items:center;gap:8px;font-weight:600}.sw input{width:auto}.hide{display:none}.err{color:#b00;font-size:13px}code{font-size:12px;word-break:break-all;background:#f0f0f0;padding:2px 4px;border-radius:4px}
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head>
+<body><main>
+<form class="card" id="lf" hidden><h1>🔐 Automação Instagram</h1><div class="sub">Mesmo login do Admin do site</div><label>E-mail</label><input id="em" type="email" autocomplete="username" required><label>Senha</label><input id="pw" type="password" autocomplete="current-password" required><br><br><button style="width:100%">Entrar</button><div class="err" id="le"></div></form>
+<div id="app" hidden>
+<div class="row"><div><h1>📩 Automação Instagram</h1><div class="sub" id="who"></div></div><button class="sec" style="flex:0" id="out">Sair</button></div>
+<div class="card" id="status"></div>
+<div class="row"><select id="fsel"></select><button class="sec" style="flex:0;white-space:nowrap" id="newf">+ Fluxo</button></div>
+<div class="tabs"><button data-t="res" class="on">📊 Resultados</button><button data-t="edit">✏️ Editar fluxo</button></div>
+<section id="t-res"></section><section id="t-edit" class="hide"></section>
+</div></main>
+<script src="/assets/automacao.js"></script></body></html>
