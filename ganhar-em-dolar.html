@@ -40,6 +40,12 @@
 .bgrem{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#e6fbfb;border:1px solid #00c2c2;border-radius:12px;padding:10px 12px;margin:8px 0 14px;font-size:14px}
 .bgrem a{background:#00c2c2;color:#002b2b;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap}
 #stickyBg{display:none}
+.road1{text-align:center;font-size:.85rem;margin:0 0 14px;color:#666}.road1 a{color:#1f1a12;text-decoration:none;font-weight:600}
+.codebar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:10px 0 0;font-size:.95rem}
+.codebar b{padding:3px 10px;border:2px dashed #00a8b5;border-radius:8px;color:#007a85;background:#effbfc;letter-spacing:.08em}
+.copy{border:1px solid #00a8b5;background:#fff;color:#007a85;font-weight:700;border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer}
+.iab{margin:10px 0 0;padding:8px 10px;border-radius:10px;background:#fff7e0;border:1px solid #f0d58a;font-size:.85rem;text-align:center}
+.g details{margin:10px 0}.g summary{cursor:pointer;font-weight:700}
 @media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
 #stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
 body{padding-bottom:76px}}
@@ -48,28 +54,22 @@ body{padding-bottom:76px}}
 <body class="plain">
 <main class="wrap g">
   <a class="back" href="./">← Voltar</a>
-  <h1>Ganhar dinheiro em dólar</h1>
-  <p class="lead"><b>1º</b> abra sua conta internacional em dólar na Bitget Wallet; <b>2º</b> escolha uma plataforma e comece a ganhar — e receba nessa conta.</p>
-  <ol class="road">
-    <li><a href="#passo1"><span class="n">1</span><span><b>Conta internacional</b><small>Bitget Wallet</small></span></a></li>
-    <li><a href="#passo2"><span class="n">2</span><span><b>Escolha onde ganhar</b><small>Hub, micro1 ou Outlier</small></span></a></li>
-    <li><a href="#passo3"><span class="n">3</span><span><b>Receba em dólar</b><small>Saque e organize seu dinheiro</small></span></a></li>
-  </ol>
-
+  <h1>Receba em dólar trabalhando pela internet</h1>
+  <p class="lead">Abra grátis sua conta em dólar pelo celular e comece a ganhar com tarefas de IA.</p>
+  <p class="road1"><a href="#passo1">① Conta Bitget Wallet</a> → <a href="#passo2">② Escolha onde ganhar</a> → <a href="#passo3">③ Receba em dólar</a></p>
   <div class="topcta">
-    <p><b>Comece aqui:</b> abra sua conta internacional em dólar</p>
     <p class="benefit">✅ Conta em dólar grátis, aberta pelo celular. É nela que você recebe os ganhos das plataformas abaixo.</p>
-    <a class="cta bgx" href="#passo1">💳 Abrir minha conta na Bitget Wallet</a>
-    <p class="note" style="margin:8px 0 0">Publicidade · Parceria paga · Código de convite: <b>HERNANDES</b></p>
+    <a id="topBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · topo">💳 Abrir minha conta na Bitget Wallet</a>
+    <div class="codebar">Código de convite: <b>HERNANDES</b> <button type="button" class="copy" data-track="Bitget · copiar código">Copiar código</button></div>
+    <p class="note" style="margin:8px 0 0">Publicidade · Parceria paga com a Bitget Wallet · <a href="#passo1">Ver o passo a passo</a></p>
+    <p id="iabTip" class="iab" hidden>📱 Abriu pelo Instagram? Toque em <b>⋯</b> no canto e escolha <b>Abrir no navegador</b> para baixar o app sem erro.</p>
   </div>
 
   <h2 class="passo" id="passo1">Passo 1 · Abra sua conta internacional</h2>
-  <p class="note" style="margin:0 0 10px"><b>Publicidade · Parceria paga com a Bitget Wallet.</b></p>
   <p>Com a <b>Virtual Account</b> da Bitget Wallet você tem <b>números de conta próprios em dólar (USD) e euro (EUR)</b> dentro da sua carteira. O que você recebe é convertido automaticamente em <b>USDC ou USDT</b>.</p>
-  <p class="benefit">✅ Conta em dólar grátis, aberta pelo celular. É nela que você recebe os ganhos das plataformas abaixo.</p>
-  <a id="mainBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" style="margin:0 0 0">💳 Abrir minha conta na Bitget Wallet</a>
+  <a id="mainBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · passo 1" style="margin:0 0 0">💳 Abrir minha conta na Bitget Wallet</a>
   <p class="code">Código de convite: <b>HERNANDES</b></p>
-  <img class="shot" src="assets/bitget/virtual-account.webp" width="800" height="450" alt="Banner oficial da Bitget Wallet: Virtual Account, sua conta em USD e EUR na carteira">
+  <img class="shot" loading="lazy" src="assets/bitget/virtual-account.webp" width="800" height="450" alt="Banner oficial da Bitget Wallet: Virtual Account, sua conta em USD e EUR na carteira">
 
   <section class="vid">
     <h2>Veja como funciona</h2>
@@ -81,19 +81,22 @@ body{padding-bottom:76px}}
     <h2>O que é e quanto custa</h2>
     <ul>
       <li>Abertura <b>gratuita</b>, sem precisar morar nos EUA ou na Europa e sem ir a agência. Disponível para usuários no Brasil.</li>
-      <li>Recebe por <b>ACH, Fedwire, SWIFT</b> (dólar) e <b>SEPA</b> (euro). Envios devem ser liberados nos próximos meses.</li>
-      <li>Útil para receber salário ou pagamentos do exterior e remessas internacionais.</li>
       <li>O saldo pode ser usado no cartão Bitget Wallet, Pix, pagamentos por QR Code e transferências.</li>
       <li>Cada depósito tem taxa (valor fixo + 0,3%, conforme o método) e taxa de rede; veja os valores no app. Depósito mínimo: US$ 50 / 1 €. Seu banco pode cobrar taxas à parte, além de tributos como o IOF.</li>
       <li>Exige verificação de identidade (KYC) e envio de documentos.</li>
     </ul>
+    <details><summary>Ver detalhes</summary><ul>
+      <li>Recebe por <b>ACH, Fedwire, SWIFT</b> (dólar) e <b>SEPA</b> (euro). Envios devem ser liberados nos próximos meses.</li>
+      <li>Útil para receber salário ou pagamentos do exterior e remessas internacionais.</li>
+      <li>Para receber, passe os dados exatamente como aparecem no app (nome do beneficiário, banco, número da conta, routing ou SWIFT/IBAN, conforme o método).</li>
+    </ul></details>
   </section>
 
   <section>
     <h2>Passo a passo para abrir</h2>
     <ol>
       <li>Toque em <b>Abrir minha conta na Bitget Wallet</b> acima e baixe o app oficial.</li>
-      <li>Crie uma carteira nova pelo meu link de convite: <a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" style="word-break:break-all">web3.bitget.com/share/DcJI?inviteCode=HERNANDES</a></li>
+      <li>Crie uma carteira nova pelo meu link de convite: <a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · link no tutorial" style="word-break:break-all">web3.bitget.com/share/DcJI?inviteCode=HERNANDES</a></li>
       <li>Faça o backup da frase de recuperação (seed phrase): <b>escreva no papel</b> e guarde em local seguro.</li>
       <li>No app, toque em <b>Pay</b>, na barra de baixo.
         <figure class="shot"><img src="assets/bitget/passo-pay.webp" width="600" height="1200" loading="lazy" alt="Tela inicial da Bitget Wallet com a aba Pay destacada na barra inferior"><figcaption>1. Toque em Pay</figcaption></figure></li>
@@ -110,8 +113,16 @@ body{padding-bottom:76px}}
     <p>Nunca compartilhe sua frase de recuperação com ninguém, nem com o suporte. Quem tem a frase tem o seu dinheiro. Não guarde em print ou na nuvem.</p>
   </section>
 
-  <a class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" style="margin:24px 0 0">💳 Abrir minha conta na Bitget Wallet</a>
-  <p class="code" style="margin-bottom:24px">Código de convite: <b>HERNANDES</b></p>
+  <section class="box faq">
+    <h2>Dúvidas rápidas</h2>
+    <details><summary>É seguro?</summary><p>Você baixa o app oficial da Bitget Wallet e só você tem a frase de recuperação. Nunca compartilhe essa frase com ninguém, nem com o suporte: quem tem a frase tem o seu dinheiro.</p></details>
+    <details><summary>Precisa de documento?</summary><p>Sim. A conta exige verificação de identidade (KYC) e envio de documentos. A análise costuma levar poucos minutos.</p></details>
+    <details><summary>Quanto custa?</summary><p>A abertura é gratuita. Cada depósito tem taxa (valor fixo + 0,3%, conforme o método) e taxa de rede; depósito mínimo de US$ 50 / 1 €. Seu banco pode cobrar taxas à parte, além de tributos como o IOF. Veja os valores no app.</p></details>
+    <details><summary>Como uso o saldo no Pix?</summary><p>O saldo pode ser usado no cartão Bitget Wallet, Pix, pagamentos por QR Code e transferências, direto no app. Confira as opções e taxas no app antes de usar.</p></details>
+  </section>
+
+  <a id="endBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · fim tutorial" style="margin:24px 0 0">💳 Abrir minha conta na Bitget Wallet</a>
+  <div class="codebar" style="margin-bottom:24px">Código de convite: <b>HERNANDES</b> <button type="button" class="copy" data-track="Bitget · copiar código (fim)">Copiar código</button></div>
 
 
   <h2 class="passo" id="passo2">Passo 2 · Escolha onde ganhar em dólar</h2>
@@ -135,7 +146,7 @@ body{padding-bottom:76px}}
 
   <section id="hub">
     <h2>Hub: grave tarefas e ganhe em dólar</h2>
-    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (Hub)">Abrir conta · Bitget</a></div>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · lembrete Hub">Abrir conta · Bitget</a></div>
   </section>
   <figure class="shot"><img src="assets/ganhos/hub-gravando-tarefa.webp" alt="Pessoa gravando tarefa na cozinha com o celular na cabeça" loading="lazy" width="700"><figcaption>No Hub você grava tarefas do dia a dia com o celular, em primeira pessoa.</figcaption></figure>
     <p>O <b>Hub</b> (Hub Data Inc., apoiado pela Y Combinator) oferece tarefas pagas de gravação em primeira pessoa para laboratórios de robótica e IA. Aberto para o Brasil, com suporte em português e canal oficial no WhatsApp.</p>
@@ -209,7 +220,7 @@ body{padding-bottom:76px}}
 
   <section id="micro1">
     <h2>micro1: especialistas treinando IA</h2>
-    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (micro1)">Abrir conta · Bitget</a></div>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · lembrete micro1">Abrir conta · Bitget</a></div>
     <p>A <b>micro1</b> recruta especialistas para treinar modelos de IA. A entrevista é feita por uma recrutadora de IA, a <b>Zara</b>, na hora que você quiser.</p>
     <ul class="facts">
       <li><b>Em dólar</b>pagamento em USD</li>
@@ -252,7 +263,7 @@ body{padding-bottom:76px}}
 
   <section id="outlier">
     <h2>Outlier: treino de IA pago em dólar</h2>
-    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="#passo1" data-track="Lembrete Bitget (Outlier)">Abrir conta · Bitget</a></div>
+    <div class="bgrem"><span>💳 Pra receber em dólar, use sua conta Bitget Wallet (Passo 1).</span><a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · lembrete Outlier">Abrir conta · Bitget</a></div>
     <p>A <b>Outlier</b> é a plataforma de treino de IA da <b>Scale AI</b>, empresa que tem a Meta como sócia (a Meta comprou 49% da Scale AI em 2025). Você avalia e melhora respostas de inteligência artificial pelo computador, no seu horário.</p>
     <ul class="facts">
       <li><b>Toda semana</b>pagamento às terças</li>
@@ -310,7 +321,7 @@ body{padding-bottom:76px}}
   <section>
     <h2>Receber o saque do Hub em USDC</h2>
     <p>No app da Bitget Wallet, copie o seu endereço de <b>USDC na rede Base</b>, cole no saque do Hub e escolha <b>sempre a rede Base</b>. A Bitget Wallet também oferece uma conta internacional em dólar e euro (parceria paga).</p>
-    <a class="cta btcb" href="#passo1" style="margin:14px 0 0">Voltar ao Passo 1: abrir a conta</a>
+    <a class="cta btcb" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · saque Hub" style="margin:14px 0 0">Abrir minha conta na Bitget Wallet</a>
   </section>
 
 
@@ -323,10 +334,13 @@ const BITGET_URL = 'https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES';
 document.querySelectorAll('.hubc').forEach(a => a.href = HUB_URL);
 
 </script>
-<div id="stickyBg" class="hide"><a href="#passo1" data-track="Barra fixa Bitget">💳 Abrir conta em dólar · Bitget</a></div>
-<script>(function(){var b=document.getElementById('stickyBg');var t=[document.getElementById('mainBitget'),document.querySelector('.topcta')].filter(Boolean);var v=new Set();
+<div id="stickyBg" class="hide"><a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · barra fixa">💳 Abrir conta em dólar · Bitget</a></div>
+<script>(function(){var b=document.getElementById('stickyBg');var t=[document.getElementById('mainBitget'),document.querySelector('.topcta'),document.getElementById('endBitget')].filter(Boolean);var v=new Set();
 var o=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?v.add(e.target):v.delete(e.target)});b.classList.toggle('hide',v.size>0||scrollY<200)});t.forEach(function(x){o.observe(x)});
 addEventListener('scroll',function(){b.classList.toggle('hide',v.size>0||scrollY<200)},{passive:true})})();</script>
+<script>(function(){document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var d=function(){b.textContent='Copiado ✓';setTimeout(function(){b.textContent='Copiar código'},2000)};
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('HERNANDES').then(d,function(){prompt('Copie o código:','HERNANDES')})}else{prompt('Copie o código:','HERNANDES')}})});
+if(/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent)){var t=document.getElementById('iabTip');if(t)t.hidden=false}})();</script>
 <script src="/assets/track.js" defer></script>
 </body>
 </html>
