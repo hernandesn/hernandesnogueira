@@ -1,0 +1,76 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Vendas Adori</title><link rel="stylesheet" href="/assets/painel.css">
+<style>
+.f{flex-wrap:wrap}.f select,.f input{flex:1 1 45%;padding:9px;border:1px solid #ddd;border-radius:10px;font-size:14px;background:#fff;min-width:0;box-sizing:border-box}
+.d{font-size:12px;font-weight:600}.up{color:#0a8a3a}.dn{color:#c0262d}.k{font-size:22px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}th{text-align:left;color:#666;font-weight:600;cursor:pointer;padding:5px 4px;border-bottom:1px solid #ddd;white-space:nowrap}td{padding:5px 4px;border-bottom:1px solid #e6e7ea}td.n,th.n{text-align:right;white-space:nowrap}
+.tw{overflow-x:auto;max-height:420px;overflow-y:auto}.tag{display:inline-block;padding:1px 6px;border-radius:6px;font-size:11px;font-weight:700;background:#e3e5ea}.tA{background:#c9f0d6}.tB{background:#fdeec2}.tC{background:#f3d6d6}
+.nav{display:flex;gap:6px;overflow-x:auto;margin:8px 0 12px;position:sticky;top:0;background:#fff;padding:6px 0;z-index:2}.nav button{flex:0 0 auto;padding:8px 12px;border:1px solid #ddd;background:#fff;border-radius:18px;font-weight:600;font-size:13px}.nav button.on{background:#111;color:#fff}
+.note{font-size:11.5px;color:#777;margin:4px 0 10px}svg text{font-size:10px;fill:#666}
+</style></head>
+<body><main>
+<form class="login" id="lf" hidden><h1>🔐 Entrar</h1><div class="sub">Vendas Adori · área restrita</div><label class="l">E-mail</label><input id="em" type="email" autocomplete="username" required><label class="l">Senha</label><input id="pw" type="password" autocomplete="current-password" required><button>Entrar</button><div class="err" id="le" style="padding:10px 0 0"></div></form>
+<div id="ad" hidden>
+<div class="top"><h1>📈 Vendas Adori</h1><a href="/admin.html" style="font-size:13px">← Admin</a></div>
+<div class="sub" id="meta"></div>
+<div class="f">
+<select id="per"><option value="mes">Este mês</option><option value="m1">Mês passado</option><option value="30">Últimos 30 dias</option><option value="90">Últimos 90 dias</option><option value="ano">Este ano</option><option value="tudo">Tudo</option><option value="custom">Personalizado…</option></select>
+<select id="ven"><option value="">Todos vendedores</option></select>
+<select id="uf"><option value="">Todas UFs</option></select>
+<select id="gru"><option value="">Todos grupos</option></select>
+<select id="tip"><option value="venda">Só vendas</option><option value="venda,funcionarios">Vendas + funcionários</option><option value="troca">Trocas</option><option value="bonificacao">Bonificações</option><option value="venda,funcionarios,troca,bonificacao">Tudo</option></select>
+<input type="date" id="di" hidden><input type="date" id="df" hidden>
+</div>
+<div class="nav" id="nav"></div>
+<div id="out"><div class="note">Carregando…</div></div>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+var sb=supabase.createClient('https://mraqhjjxxvbhftapjnos.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1yYXFoamp4eHZiaGZ0YXBqbm9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQzMzcyNTMsImV4cCI6MjA2OTkxMzI1M30.S2JfG5Ic2M942LrQDoh7XZ2z_4oKcmV1b2YjLtejQn4',{auth:{storageKey:'site_admin_auth'}});
+function $(i){return document.getElementById(i)}
+var R=function(v){return 'R$ '+(+v||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})},N=function(v,d){return (+v||0).toLocaleString('pt-BR',{maximumFractionDigits:d==null?0:d})},P=function(v){return v==null?'–':(v*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%'};
+function E(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function iso(d){return d.toISOString().slice(0,10)}
+function range(){var t=new Date(),y=t.getFullYear(),m=t.getMonth(),v=$('per').value;
+ if(v==='mes')return[iso(new Date(Date.UTC(y,m,1))),iso(t)];if(v==='m1')return[iso(new Date(Date.UTC(y,m-1,1))),iso(new Date(Date.UTC(y,m,0)))];
+ if(v==='ano')return[y+'-01-01',iso(t)];if(v==='tudo')return['2000-01-01',iso(t)];if(v==='custom')return[$('di').value||iso(t),$('df').value||iso(t)];
+ var a=new Date(t);a.setDate(a.getDate()-(+v)+1);return[iso(a),iso(t)]}
+function dl(a,b){if(!b)return'';var x=(a-b)/b;return '<span class="d '+(x>=0?'up':'dn')+'">'+(x>=0?'▲ ':'▼ ')+P(Math.abs(x))+'</span>'}
+function card(l,v,s){return '<div class="c"><div class="l">'+l+'</div><div class="k">'+v+'</div>'+(s?'<div class="l">'+s+'</div>':'')+'</div>'}
+function chart(rows,key,lab){if(!rows.length)return'<div class="note">Sem dados.</div>';var W=360,H=150,mx=Math.max.apply(null,rows.map(function(r){return +r[key]}))||1,bw=W/rows.length;
+ var s='<svg viewBox="0 0 '+W+' '+(H+18)+'" preserveAspectRatio="none">';rows.forEach(function(r,i){var h=(+r[key])/mx*H;s+='<rect x="'+(i*bw+1)+'" y="'+(H-h)+'" width="'+Math.max(bw-2,1)+'" height="'+h+'" rx="2" fill="#00c2c7"><title>'+E(r[lab])+': '+R(r[key])+'</title></rect>'});
+ var st=Math.ceil(rows.length/6);rows.forEach(function(r,i){if(i%st===0)s+='<text x="'+(i*bw+2)+'" y="'+(H+13)+'">'+E(String(r[lab]).slice(5))+'</text>'});return s+'</svg>'}
+var TB={};function table(id,cols,rows){TB[id]={cols:cols,rows:rows,k:null,dir:-1};return '<div class="tw" id="'+id+'">'+tbody(id)+'</div>'}
+function tbody(id){var t=TB[id],h='<table><tr>'+t.cols.map(function(c,i){return '<th class="'+(c[2]?'n':'')+'" onclick="srt(\''+id+'\','+i+')">'+c[0]+(t.k===i?(t.dir>0?' ▲':' ▼'):'')+'</th>'}).join('')+'</tr>';
+ t.rows.forEach(function(r){h+='<tr>'+t.cols.map(function(c){var v=r[c[1]];return '<td class="'+(c[2]?'n':'')+'">'+(c[3]?c[3](v,r):E(v))+'</td>'}).join('')+'</tr>'});return h+'</table>'+(t.rows.length?'':'<div class="note">Nada aqui no filtro atual.</div>')}
+function srt(id,i){var t=TB[id],k=t.cols[i][1];t.dir=t.k===i?-t.dir:-1;t.k=i;t.rows.sort(function(a,b){var x=a[k],y=b[k];if(!isNaN(+x)&&!isNaN(+y)&&x!==null&&y!==null){x=+x;y=+y}return (x>y?1:x<y?-1:0)*t.dir});$(id).innerHTML=tbody(id)}
+var abc=function(v){return '<span class="tag t'+v+'">'+v+'</span>'};
+var SEC=[['res','Resumo'],['tempo','Tempo'],['cli','Clientes'],['abc','Curva ABC'],['churn','Inativos'],['ven','Vendedores'],['prod','Produtos'],['reg','Regiões'],['var','Altas/quedas']],cur='res',D=null;
+$('nav').innerHTML=SEC.map(function(s){return '<button data-s="'+s[0]+'">'+s[1]+'</button>'}).join('');
+$('nav').onclick=function(e){var s=e.target.dataset.s;if(s){cur=s;render()}};
+function render(){[].forEach.call($('nav').children,function(b){b.classList.toggle('on',b.dataset.s===cur)});if(!D)return;var d=D,k=d.kpi,h='';
+ if(cur==='res'){h+='<div class="g">'+card('Faturamento',R(k.fat),dl(k.fat,d.kpi_ant.fat)+' vs período anterior'+(+d.kpi_aa.fat?'<br>'+dl(k.fat,d.kpi_aa.fat)+' vs ano anterior':'<br>ano anterior: sem dados no ERP'))+card('Pedidos',N(k.ped),dl(k.ped,d.kpi_ant.ped))+card('Clientes que compraram',N(k.cli),dl(k.cli,d.kpi_ant.cli))+card('Ticket médio',R(k.ticket),'por pedido')+card('Frequência',N(k.freq,1),'pedidos por cliente')+card('Mix',N(k.mix,1),'produtos por pedido')+card('Produtos vendidos',N(k.prods),N(k.qtd,1)+' unidades')+card('Clientes novos',N(d.novos.length),'1ª compra no período')+'</div>';
+  h+='<div class="c"><h2>Por tipo de pedido (período)</h2>'+d.tipos.map(function(t){return '<div class="row"><span>'+E(t.tipo)+' · '+t.ped+' ped.</span><span>'+R(t.fat)+'</span></div>'}).join('')+'</div>';
+  h+='<div class="c"><h2>Faturamento por mês</h2>'+chart(d.mes,'fat','m')+'</div>'}
+ if(cur==='tempo'){h+='<div class="c"><h2>Por dia</h2>'+chart(d.dia,'fat','d')+'</div><div class="c"><h2>Por semana</h2>'+chart(d.semana,'fat','s')+'</div><div class="c"><h2>Por mês</h2>'+table('tm',[['Mês','m'],['Faturamento','fat',1,R],['Pedidos','ped',1],['Clientes','cli',1]],d.mes)+'</div>'}
+ if(cur==='cli'){h+='<div class="c"><h2>Clientes no período</h2>'+table('tc',[['Cliente','nome'],['ABC','abc',0,abc],['Fat.','fat',1,R],['Ped.','ped',1],['Ticket','ticket',1,R],['Última','ult'],['Vendedor','vendedor'],['Cidade','cidade']],d.clientes)+'</div><div class="c"><h2>Clientes novos</h2>'+table('tn',[['Cliente','nome'],['1ª compra','primeira'],['Total','fat',1,R],['Vendedor','vendedor']],d.novos)+'</div>'}
+ if(cur==='abc'){var a=d.abc_cli||{};h+='<div class="g">'+card('Clientes A',N(a.A),'80% do faturamento')+card('Clientes B',N(a.B),'próximos 15%')+card('Clientes C',N(a.C),'últimos 5%')+'</div><div class="c"><h2>Curva ABC de produtos</h2>'+table('ta',[['Produto','nome'],['ABC','abc',0,abc],['Fat.','fat',1,R],['Qtd','qtd',1,function(v){return N(v,1)}],['Clientes','clientes',1]],d.produtos)+'</div>'}
+ if(cur==='churn'){var c=d.churn_faixas||{};h+='<div class="note">Dias desde a última compra, contados até o fim do período.</div><div class="g">'+['0-30','31-60','61-90','91-180','180+'].map(function(x){return card(x+' dias',N(c[x]),'clientes')}).join('')+'</div><div class="c"><h2>Sem comprar há mais de 30 dias</h2>'+table('ti',[['Cliente','nome'],['Dias','dias',1],['Última','ult'],['Total hist.','fat',1,R],['Ped.','ped',1],['Vendedor','vendedor']],d.inativos)+'</div>'}
+ if(cur==='ven'){h+='<div class="c"><h2>Vendedores</h2>'+table('tv',[['Vendedor','nome'],['Ativo','ativo',0,function(v){return v?'sim':'não'}],['Fat.','fat',1,R],['Ped.','ped',1],['Clientes','cli',1],['Ticket','ticket',1,R]],d.vendedores)+'</div><div class="c"><h2>Carteira (cadastro de clientes)</h2>'+table('tw',[['Vendedor','vendedor'],['Cadastrados','cadastrados',1],['Ativos','ativos',1],['Compraram','compraram',1],['Fat.','fat',1,R]],d.carteira)+'</div>'}
+ if(cur==='prod'){h+='<div class="note">Margem estimada = venda − custo médio de compra do mesmo código no ERP. Só aparece em produtos de revenda com compra registrada; é estimativa.</div><div class="c"><h2>Produtos</h2>'+table('tp',[['Produto','nome'],['Grupo','grupo'],['Qtd','qtd',1,function(v){return N(v,1)}],['Un','un'],['Fat.','fat',1,R],['Margem est.','margem_est',1,function(v){return v==null?'–':R(v)}],['%','margem_pct',1,P]],d.produtos)+'</div><div class="c"><h2>Grupos</h2>'+table('tg',[['Grupo','grupo'],['Fat.','fat',1,R],['Qtd','qtd',1,function(v){return N(v,1)}]],d.grupos)+'</div>'}
+ if(cur==='reg'){h+='<div class="c"><h2>Por UF</h2>'+table('tu',[['UF','uf'],['Fat.','fat',1,R],['Clientes','cli',1]],d.ufs)+'</div><div class="c"><h2>Por cidade</h2>'+table('tci',[['Cidade','cidade'],['UF','uf'],['Fat.','fat',1,R],['Clientes','cli',1]],d.cidades)+'</div>'}
+ if(cur==='var'){var cc=[['Cliente','nome'],['Atual','atual',1,R],['Anterior','anterior',1,R],['Dif.','dif',1,R]];h+='<div class="note">Período atual vs período anterior de mesmo tamanho.</div><div class="c"><h2>Maiores quedas</h2>'+table('tq',cc,d.quedas)+'</div><div class="c"><h2>Maiores altas</h2>'+table('th',cc,d.altas)+'</div>'}
+ $('out').innerHTML=h}
+var filled=0;
+function load(){var r=range();$('out').innerHTML='<div class="note">Carregando…</div>';
+ sb.rpc('erp_dash',{p_ini:r[0],p_fim:r[1],p_vendedor:$('ven').value,p_uf:$('uf').value,p_produto:$('gru').value,p_tipos:$('tip').value.split(',')}).then(function(x){
+  if(x.error){$('out').innerHTML='<div class="err">Erro: '+E(x.error.message)+'</div>';return}D=x.data;var m=D.meta;
+  $('meta').textContent=r[0].split('-').reverse().join('/')+' a '+r[1].split('-').reverse().join('/')+' · dados do ERP de '+(m.min||'').split('-').reverse().join('/')+' a '+(m.max||'').split('-').reverse().join('/')+' · sincronizado '+(m.sync?new Date(m.sync).toLocaleString('pt-BR'):'–');
+  if(!filled){filled=1;(m.vendedores_lista||[]).forEach(function(v){$('ven').add(new Option(v.nome,v.cod))});(m.ufs_lista||[]).forEach(function(u){$('uf').add(new Option(u,u))});(m.grupos_lista||[]).forEach(function(g){$('gru').add(new Option(g,g))})}
+  render()})}
+['ven','uf','gru','tip','di','df'].forEach(function(i){$(i).onchange=load});$('per').onchange=function(){var c=$('per').value==='custom';$('di').hidden=$('df').hidden=!c;load()};
+function show(){sb.auth.getSession().then(function(r){if(!r.data.session){$('lf').hidden=false;$('ad').hidden=true;return}
+ sb.rpc('is_site_admin').then(function(x){if(x.data!==true){sb.auth.signOut();$('le').textContent='Esta conta não tem acesso.';$('lf').hidden=false;$('ad').hidden=true;return}$('lf').hidden=true;$('ad').hidden=false;load()})})}
+$('lf').onsubmit=function(e){e.preventDefault();$('le').textContent='';sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value}).then(function(r){if(r.error){$('le').textContent='E-mail ou senha incorretos.';return}$('pw').value='';show()})};
+show();
+</script></body></html>
