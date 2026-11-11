@@ -60,6 +60,33 @@
 .g figure.materia{margin:12px 0 18px;max-width:100%;text-align:center}
 .g figure.materia img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
 .g figure.materia figcaption{font-size:.82rem;color:#666;margin-top:8px;line-height:1.45;text-align:left}
+
+.g .choose-lead{margin:0 0 16px;text-align:center;font-size:1.15rem;font-weight:700;color:#1f1a12;letter-spacing:-.01em}
+.g .chooser{display:grid;gap:16px;margin:0 0 26px}
+.g .pathcard{background:#fff;border:1px solid #e3e3e3;border-radius:16px;padding:18px 18px 16px;box-shadow:0 8px 22px rgba(20,20,20,.06)}
+.g .pathcard h3{margin:0 0 6px;padding:0;border:0;text-align:left;text-transform:none;letter-spacing:-.01em;font-size:1.15rem;font-weight:750;color:#1f1a12}
+.g .pathcard p{margin:0;color:#3d3d3d;font-size:.92rem;line-height:1.5}
+.g .pathcard .note{margin:10px 0 0;text-align:center}
+.g .pathcard .cta,.g .job .cta{margin:14px 0 0;min-height:48px;display:flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;font-weight:700;box-shadow:none;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+.g .cta.hubc{background:#1f6b45;color:#fff}
+.g .cta.m1c{background:#5b3fa0;color:#fff}
+.g .cta.outc{background:#1f2a44;color:#fff}
+.g .cta.merc{background:#1f2430;color:#fff}
+.g .pathcard .cta:hover,.g .job .cta:hover,.g .cta.hubc:hover,.g .cta.m1c:hover,.g .cta.outc:hover,.g section .cta.merc:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 6px 16px rgba(20,20,20,.12)}
+.g .pathcard .cta:focus-visible,.g .job .cta:focus-visible,.g .cta.merc:focus-visible,.g .cta.hubc:focus-visible,.g .cta.m1c:focus-visible,.g .cta.outc:focus-visible{outline:3px solid #1f1a12;outline-offset:3px;box-shadow:0 0 0 6px #fff}
+.g .jobs{display:grid;gap:18px;margin:16px 0 10px}
+.g .job{border:1px solid #e3e3e3;border-radius:16px;padding:18px 18px 16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
+.g .job h3{margin:0 0 10px;font-size:1.05rem;line-height:1.35;color:#1f1a12;font-weight:700}
+.g .job p{margin:0 0 8px;font-size:.92rem;line-height:1.5;color:#2c2c2c}
+.g .pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.g .pill{display:inline-block;font-size:.7rem;line-height:1;letter-spacing:.04em;text-transform:uppercase;border:1px solid #d8d8d8;border-radius:999px;padding:6px 9px;color:#333;background:#f5f5f5;font-weight:700}
+.g .job-pay{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+.g .job-pay-value{font-size:1.35rem;line-height:1.15;font-weight:800;color:#1f1a12;letter-spacing:-.02em}
+.g .job-pay-note{font-size:.78rem;color:#555;font-weight:500}
+@media (prefers-reduced-motion:reduce){
+.g .pathcard .cta,.g .job .cta,.g .cta.hubc,.g .cta.m1c,.g .cta.outc{transition:none}
+.g .pathcard .cta:hover,.g .job .cta:hover,.g .cta.hubc:hover,.g .cta.m1c:hover,.g .cta.outc:hover,.g section .cta.merc:hover{transform:none}
+}
 @media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
 #stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
 body{padding-bottom:76px}}
@@ -141,14 +168,30 @@ body{padding-bottom:76px}}
 
 
   <h2 class="passo" id="passo2">Passo 2 · Escolha onde ganhar em dólar</h2>
+  <p class="choose-lead">Qual caminho é o seu</p>
   <div class="chooser">
-    <a class="cta merc" href="#mercor" data-track="Mercor · chooser">Ver vagas na Mercor</a>
-    <p class="note">Primeira plataforma de trabalho desta página. Tutorial e lista de vagas logo abaixo.</p>
-    <a class="cta hubc" href="https://ai.hub.xyz/r/NOGUER" target="_blank" rel="noopener">Cadastro no Hub</a>
-    <p class="note">Código de convite: <b>NOGUER</b></p>
-    <a class="cta m1c" href="https://refer.micro1.ai/referral/jobs?referralCode=e70ea93e-fc62-4382-981f-ab6c6c11d9d8&amp;utm_source=referral&amp;utm_medium=share&amp;utm_campaign=job_referral" target="_blank" rel="noopener" style="background:#5b3fa0;color:#fff">Cadastro na micro1</a>
+    <article class="pathcard">
+      <h3>Mercor</h3>
+      <p>Primeira plataforma de trabalho desta página. Tutorial e lista de vagas logo abaixo.</p>
+      <a class="cta merc" href="#mercor" data-track="Mercor · chooser">Ver vagas na Mercor</a>
+    </article>
+    <article class="pathcard">
+      <h3>Hub</h3>
+      <p>Grave tarefas do dia a dia com o celular, em primeira pessoa.</p>
+      <a class="cta hubc" href="https://ai.hub.xyz/r/NOGUER" target="_blank" rel="noopener" data-track="Hub · chooser">Cadastro no Hub</a>
+      <p class="note">Código de convite: <b>NOGUER</b></p>
+    </article>
+    <article class="pathcard">
+      <h3>micro1</h3>
+      <p>Especialistas treinando modelos de IA, com entrevista e pagamento em dólar.</p>
+      <a class="cta m1c" href="https://refer.micro1.ai/referral/jobs?referralCode=e70ea93e-fc62-4382-981f-ab6c6c11d9d8&amp;utm_source=referral&amp;utm_medium=share&amp;utm_campaign=job_referral" target="_blank" rel="noopener" data-track="micro1 · chooser">Cadastro na micro1</a>
+    </article>
     <!-- TODO: trocar pelo link de indicação -->
-    <a class="cta outc" href="https://outlier.ai" target="_blank" rel="noopener" style="background:#1f2a44;color:#fff">Cadastro na Outlier</a>
+    <article class="pathcard">
+      <h3>Outlier</h3>
+      <p>Treino de IA pago em dólar, inclusive em projetos em português.</p>
+      <a class="cta outc" href="https://outlier.ai" target="_blank" rel="noopener" data-track="Outlier · chooser">Cadastro na Outlier</a>
+    </article>
   </div>
   <p class="note" style="text-align:center;margin:-8px 0 20px">Ou leia o passo a passo de cada uma abaixo: <a href="#mercor">Mercor</a> · <a href="#hub">Hub</a> · <a href="#micro1">micro1</a> · <a href="#outlier">Outlier</a></p>
 
@@ -205,42 +248,54 @@ body{padding-bottom:76px}}
     <p class="aviso">Os valores abaixo são do anúncio em 10/11/2026 e <b>podem mudar</b>. Candidatar-se <b>não é promessa</b> de contratação nem de ganho. Leia os requisitos de cada vaga: a maior parte pede português nativo ou quase; algumas pedem inglês, formação ou experiência em áudio, tradução ou linguística. A última é uma pesquisa paga, só para quem se encaixa em um perfil bem restrito.</p>
     <div class="jobs">
       <article class="job">
+        <div class="pills"><span class="pill">Português</span><span class="pill">Meio período</span><span class="pill">Banco de talentos</span></div>
         <h3>Especialistas em língua portuguesa (Portuguese Linguistic Experts)</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 50/h</span> <span class="job-pay-note">a vaga anuncia · meio período</span></p>
         <p><b>Pagamento:</b> a vaga anuncia US$ 50 por hora, em meio período. A carga horária não está confirmada no anúncio.</p>
         <p><b>Para quem é:</b> quem tem português nativo ou quase e experiência em tradução, edição, anotação ou processamento de linguagem.</p>
         <p><b>Como funciona:</b> é um banco de talentos. Você se candidata para entrar no grupo de especialistas em português; o trabalho, quando houver, vem conforme a demanda do projeto.</p>
         <a class="cta merc" href="https://work.mercor.com/jobs/list_AAABoXlxYDftYp_n8FROgpw8/portuguese-linguistic-experts?referralCode=d94be58d-f15b-d34b-0adb-b89cc3aa61b5" target="_blank" rel="sponsored noopener" data-track="mercor-vaga-1">Ver vaga</a>
       </article>
       <article class="job">
+        <div class="pills"><span class="pill">Português</span><span class="pill">Inglês</span><span class="pill">Meio período</span></div>
         <h3>Especialista generalista bilíngue em português, segurança de IA (Bilingual Portuguese Generalist Expert — AI Safety)</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 40–44/h</span> <span class="job-pay-note">a vaga anuncia · cerca de 7 h/semana</span></p>
         <p><b>Pagamento:</b> a vaga anuncia de US$ 40 a US$ 44 por hora, cerca de 7 horas por semana, com início imediato.</p>
         <p><b>Para quem é:</b> quem tem português nativo ou quase, inglês escrito profissional e graduação concluída ou em andamento. A preferência é por quem mora na Europa Ocidental, mas o anúncio diz que candidatos de outros países são bem-vindos.</p>
         <p><b>Como funciona:</b> é um trabalho de especialista generalista em segurança de IA, em meio período. Leia o anúncio para ver as tarefas e se o seu perfil se encaixa.</p>
         <a class="cta merc" href="https://work.mercor.com/jobs/list_AAABoGolO9gcnQ8YmYtCO4rY/bilingual-portuguese-generalist-expert-ai-safety?referralCode=d94be58d-f15b-d34b-0adb-b89cc3aa61b5" target="_blank" rel="sponsored noopener" data-track="mercor-vaga-2">Ver vaga</a>
       </article>
       <article class="job">
+        <div class="pills"><span class="pill">Português (Brasil)</span><span class="pill">Áudio</span><span class="pill">Cerca de 20 h/semana</span></div>
         <h3>Qualidade de audiolivros em português do Brasil (Audiobook QA Expert — Portuguese (Brazil))</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 15–20/h</span> <span class="job-pay-note">a vaga anuncia · cerca de 20 h/semana</span></p>
         <p><b>Pagamento:</b> a vaga anuncia de US$ 15 a US$ 20 por hora, cerca de 20 horas por semana.</p>
         <p><b>Para quem é:</b> quem tem português do Brasil nativo ou quase, é ouvinte de audiolivros e tem inglês funcional. A preferência é por brasileiros.</p>
         <p><b>Como funciona:</b> o trabalho é ouvir e conferir a qualidade de audiolivros em português do Brasil, no ritmo anunciado de cerca de 20 horas por semana.</p>
         <a class="cta merc" href="https://work.mercor.com/jobs/list_AAABoKG7mYlTL1lmfwpBUruN/audiobook-qa-expert-portuguese-brazil?referralCode=d94be58d-f15b-d34b-0adb-b89cc3aa61b5" target="_blank" rel="sponsored noopener" data-track="mercor-vaga-3">Ver vaga</a>
       </article>
       <article class="job">
+        <div class="pills"><span class="pill">Português (Brasil)</span><span class="pill">Áudio</span></div>
         <h3>Engenheiro de áudio, fala e TTS em português do Brasil (Audio Engineer, Speech/TTS Audio Specialist – Brazilian Portuguese)</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 20–30/h</span> <span class="job-pay-note">a vaga anuncia · carga horária não confirmada</span></p>
         <p><b>Pagamento:</b> a vaga anuncia de US$ 20 a US$ 30 por hora. A carga horária não está confirmada no anúncio.</p>
         <p><b>Para quem é:</b> quem tem português do Brasil nativo ou quase e experiência editando voz com iZotope RX, Pro Tools ou ferramenta parecida.</p>
         <p><b>Como funciona:</b> é uma vaga técnica de áudio para fala e síntese de voz (TTS) em português do Brasil. Combina com quem já trabalha com edição de voz.</p>
         <a class="cta merc" href="https://work.mercor.com/jobs/list_AAABoTSnXon2NKOaCWVFA6I-/audio-engineer-speech-tts-audio-specialist-brazilian-portuguese?referralCode=d94be58d-f15b-d34b-0adb-b89cc3aa61b5" target="_blank" rel="sponsored noopener" data-track="mercor-vaga-4">Ver vaga</a>
       </article>
       <article class="job">
+        <div class="pills"><span class="pill">Idioma</span><span class="pill">Áudio</span><span class="pill">Banco de talentos</span></div>
         <h3>Especialista em idioma e áudio, banco de talentos (Language &amp; Audio Expert)</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 35–50/h</span> <span class="job-pay-note">segundo o anúncio · por projeto</span></p>
         <p><b>Pagamento:</b> segundo o anúncio, as vagas dessa área têm saído a US$ 35–50 por hora, definidas por projeto.</p>
         <p><b>Para quem é:</b> quem tem fluência nativa ou profissional em pelo menos um idioma (português está na lista), ou experiência em tradução, voz ou áudio.</p>
         <p><b>Como funciona:</b> é uma rede permanente de talentos, não uma vaga pontual. Você entra no banco; o valor e as tarefas aparecem em cada projeto.</p>
         <a class="cta merc" href="https://work.mercor.com/jobs/list_AAABoKOPMUFnRCU8QMZBH634/language-audio-expert?referralCode=d94be58d-f15b-d34b-0adb-b89cc3aa61b5" target="_blank" rel="sponsored noopener" data-track="mercor-vaga-5">Ver vaga</a>
       </article>
       <article class="job">
+        <div class="pills"><span class="pill">Pesquisa paga</span><span class="pill">Pagamento único</span><span class="pill">Perfil restrito</span></div>
         <h3>Estudo pago: finanças pessoais entre Brasil e EUA (Brazil Personal &amp; Cross-Border Finance – Paid Research Study)</h3>
+        <p class="job-pay"><span class="job-pay-value">US$ 100</span> <span class="job-pay-note">a vaga anuncia · pagamento único · uns 20 min</span></p>
         <p><b>Pagamento:</b> a vaga anuncia US$ 100 em um pagamento único, depois da verificação, por uma pesquisa online de uns 20 minutos.</p>
         <p><b>Para quem é:</b> quem mora no Brasil, tem 18 anos ou mais, renda profissional alta, tem como banco principal XP, BTG, Nubank ou Inter, e tem imóvel nos EUA ou sustenta alguém que mora lá.</p>
         <p><b>Como funciona:</b> esta é uma <b>pesquisa paga com perfil muito específico</b>, não um trabalho contínuo. Só faz sentido se você se encaixa em todos esses critérios. A tarefa é responder a um questionário online de uns 20 minutos.</p>
@@ -339,7 +394,7 @@ body{padding-bottom:76px}}
       <li>Precisa de <b>inglês bom</b>: a entrevista é falada.</li>
       <li>Busca quem tem experiência na área (ex.: programação, finanças, saúde, direito).</li>
     </ul>
-    <a class="cta m1c" href="https://refer.micro1.ai/referral/jobs?referralCode=e70ea93e-fc62-4382-981f-ab6c6c11d9d8&amp;utm_source=referral&amp;utm_medium=share&amp;utm_campaign=job_referral" target="_blank" rel="noopener" style="margin:14px 0 0;background:#5b3fa0;color:#fff">Quero me cadastrar na micro1</a>
+    <a class="cta m1c" href="https://refer.micro1.ai/referral/jobs?referralCode=e70ea93e-fc62-4382-981f-ab6c6c11d9d8&amp;utm_source=referral&amp;utm_medium=share&amp;utm_campaign=job_referral" target="_blank" rel="noopener" style="margin:14px 0 0">Quero me cadastrar na micro1</a>
   </section>
 
   <section>
@@ -383,7 +438,7 @@ body{padding-bottom:76px}}
       <li>Especialistas (ex.: matemática) ganham mais.</li>
     </ul>
     <!-- TODO: trocar pelo link de indicação -->
-    <a class="cta outc" href="https://outlier.ai" target="_blank" rel="noopener" style="margin:14px 0 0;background:#1f2a44;color:#fff">Quero me cadastrar na Outlier</a>
+    <a class="cta outc" href="https://outlier.ai" target="_blank" rel="noopener" style="margin:14px 0 0">Quero me cadastrar na Outlier</a>
   </section>
 
   <section>
