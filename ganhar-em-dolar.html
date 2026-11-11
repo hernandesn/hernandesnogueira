@@ -87,6 +87,17 @@
 .g .pathcard .cta,.g .job .cta,.g .cta.hubc,.g .cta.m1c,.g .cta.outc{transition:none}
 .g .pathcard .cta:hover,.g .job .cta:hover,.g .cta.hubc:hover,.g .cta.m1c:hover,.g .cta.outc:hover,.g section .cta.merc:hover{transform:none}
 }
+
+.g .chk{margin:0 0 22px;padding:16px 16px 14px;border:1px solid #e3e3e3;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
+.g .chk-status{margin:0 0 12px;text-align:center;font-weight:800;font-size:1.02rem;color:#1f1a12;letter-spacing:-.01em}
+.g .chk ol{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.g .chk li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid #eee;border-radius:12px;background:#fafafa;flex-wrap:wrap}
+.g .chk label{display:flex;align-items:center;gap:10px;font-weight:600;color:#1f1a12;cursor:pointer;flex:1;min-width:0}
+.g .chk input{width:18px;height:18px;flex:0 0 18px;accent-color:#1f1a12}
+.g .chk a{font-size:.82rem;color:#007a85;font-weight:600;white-space:nowrap;text-decoration:none}
+.g .chk li:has(input:checked){background:#effbfc;border-color:#bfe6ea}
+.g .chk button[type=reset]{display:block;margin:12px auto 0;border:1px solid #ccc;background:#fff;color:#444;border-radius:999px;padding:6px 14px;font-size:.85rem;cursor:pointer}
+.g .chk-note{margin:10px 0 0;text-align:center;font-size:.78rem;color:#666;line-height:1.4}
 @media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
 #stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
 body{padding-bottom:76px}}
@@ -106,6 +117,26 @@ body{padding-bottom:76px}}
     <p class="note" style="margin:8px 0 0">Publicidade · Parceria paga com a Bitget Wallet · <a href="#passo1">Ver o passo a passo</a></p>
     <p id="iabTip" class="iab" hidden>📱 Abriu pelo Instagram? Toque em <b>⋯</b> no canto e escolha <b>Abrir no navegador</b> para baixar o app sem erro.</p>
   </div>
+
+  <form id="chkPassos" class="chk" aria-label="Seu progresso nesta página">
+    <p class="chk-status" id="chkStatus">3 passos para começar</p>
+    <ol>
+      <li>
+        <label><input type="checkbox" name="passo" value="1"> <span>Abra sua conta em dólar</span></label>
+        <a href="#passo1">Ir ao passo 1</a>
+      </li>
+      <li>
+        <label><input type="checkbox" name="passo" value="2"> <span>Escolha o caminho ou a vaga</span></label>
+        <a href="#passo2">Ir ao passo 2</a>
+      </li>
+      <li>
+        <label><input type="checkbox" name="passo" value="3"> <span>Candidate-se</span></label>
+        <a href="#mercor">Ver tutorial e vagas</a>
+      </li>
+    </ol>
+    <button type="reset" id="chkClear">Limpar progresso</button>
+    <p class="chk-note">O progresso fica só neste aparelho. Nada é enviado.</p>
+  </form>
 
   <h2 class="passo" id="passo1">Passo 1 · Abra sua conta internacional</h2>
   <p>Com a <b>Virtual Account</b> da Bitget Wallet você tem <b>números de conta próprios em dólar (USD) e euro (EUR)</b> dentro da sua carteira. O que você recebe é convertido automaticamente em <b>USDC ou USDT</b>.</p>
@@ -503,6 +534,7 @@ addEventListener('scroll',function(){b.classList.toggle('hide',v.size>0||scrollY
 <script>(function(){document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var d=function(){b.textContent='Copiado ✓';setTimeout(function(){b.textContent='Copiar código'},2000)};
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('HERNANDES').then(d,function(){prompt('Copie o código:','HERNANDES')})}else{prompt('Copie o código:','HERNANDES')}})});
 if(/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent)){var t=document.getElementById('iabTip');if(t)t.hidden=false}})();</script>
+<script>(function(){var f=document.getElementById('chkPassos');if(!f)return;var K='hn-ganhar-passos-v1';var boxes=f.querySelectorAll('input[name="passo"]');var status=document.getElementById('chkStatus');function read(){try{var v=JSON.parse(localStorage.getItem(K)||'[]');return Array.isArray(v)?v:[]}catch(e){return[]}}function write(a){try{localStorage.setItem(K,JSON.stringify(a))}catch(e){}}function update(){var done=[];boxes.forEach(function(b){if(b.checked)done.push(b.value)});write(done);if(!status)return;var n=done.length;status.textContent=n===0?'Passo 1 de 3 · abra sua conta em dólar':n===1?'Passo 2 de 3 · escolha o caminho ou a vaga':n===2?'Passo 3 de 3 · candidate-se':'3 de 3 concluídos neste aparelho'}var saved=read();boxes.forEach(function(b){b.checked=saved.indexOf(b.value)!==-1});update();f.addEventListener('change',update);f.addEventListener('reset',function(){setTimeout(function(){write([]);update()},0)})})();</script>
 <script src="/assets/track.js" defer></script>
 </body>
 </html>
