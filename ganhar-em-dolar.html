@@ -98,6 +98,15 @@
 .g .chk li:has(input:checked){background:#effbfc;border-color:#bfe6ea}
 .g .chk button[type=reset]{display:block;margin:12px auto 0;border:1px solid #ccc;background:#fff;color:#444;border-radius:999px;padding:6px 14px;font-size:.85rem;cursor:pointer}
 .g .chk-note{margin:10px 0 0;text-align:center;font-size:.78rem;color:#666;line-height:1.4}
+
+.g .prova{margin:8px 0 28px;padding:18px 16px 16px;border:1px solid #e3e3e3;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
+.g .prova h2{margin:0 0 8px;text-align:center;font-size:1.15rem}
+.g .prova-lead{margin:0 0 14px;text-align:center;font-size:.92rem;color:#444;line-height:1.45}
+.g .prova-grid{display:grid;gap:16px}
+@media (min-width:900px){.g .prova-grid{grid-template-columns:repeat(3,1fr);align-items:start}}
+.g .prova-grid figure{margin:0}
+.g .prova-grid img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e3e3e3}
+.g .prova-grid figcaption{margin-top:8px;font-size:.82rem;color:#555;line-height:1.45}
 @media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
 #stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
 body{padding-bottom:76px}}
@@ -197,6 +206,25 @@ body{padding-bottom:76px}}
   <a id="endBitget" class="cta bgx" href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · fim tutorial" style="margin:24px 0 0">💳 Abrir minha conta na Bitget Wallet</a>
   <div class="codebar" style="margin-bottom:24px">Código de convite: <b>HERNANDES</b> <button type="button" class="copy" data-track="Bitget · copiar código (fim)">Copiar código</button></div>
 
+
+  <section id="provaSocial" class="prova">
+    <h2>Na imprensa e na prática</h2>
+    <p class="prova-lead">Matérias e prints reais que já aparecem mais abaixo nesta página. Nada disso é depoimento nem garantia de vaga ou de valor.</p>
+    <div class="prova-grid">
+      <figure>
+        <a href="https://exame.com/tecnologia/examelab/de-r-25-a-r-600-por-hora-apps-de-rendas-extras-que-vao-de-passear-com-cachorro-a-treinar-ia/" target="_blank" rel="noopener"><img src="assets/ganhos/exame-materia.webp" alt="Matéria da Exame sobre renda extra treinando IA" loading="lazy" width="700"></a>
+        <figcaption>Na imprensa: a Exame mostra brasileiros ganhando para treinar IA, gravando a própria rotina ou avaliando respostas de IA em dólar (set/2026). <a href="https://exame.com/tecnologia/examelab/de-r-25-a-r-600-por-hora-apps-de-rendas-extras-que-vao-de-passear-com-cachorro-a-treinar-ia/" target="_blank" rel="noopener">Ler na Exame</a></figcaption>
+      </figure>
+      <figure>
+        <a href="https://economictimes.indiatimes.com/tech/funding/ai-training-startup-mercor-valued-at-20-billion-in-latest-funding-round/articleshow/135715625.cms" target="_blank" rel="noopener"><img src="assets/ganhos/mercor-economictimes-serie-d.webp" alt="Print da matéria do The Economic Times de 10 de novembro de 2026: Mercor avaliada em US$ 20 bilhões, com participação da Nvidia" loading="lazy" width="1200" height="561"></a>
+        <figcaption>The Economic Times, 10/11/2026 (crédito Reuters): a Mercor anunciou uma Série D com avaliação de US$ 20 bilhões e participação da Nvidia. É contexto de quem está por trás, não uma promessa de ganho. <a href="https://economictimes.indiatimes.com/tech/funding/ai-training-startup-mercor-valued-at-20-billion-in-latest-funding-round/articleshow/135715625.cms" target="_blank" rel="noopener">Ler a matéria</a></figcaption>
+      </figure>
+      <figure>
+        <img src="assets/ganhos/hub-gravando-tarefa.webp" alt="Pessoa gravando tarefa na cozinha com o celular na cabeça" loading="lazy" width="700">
+        <figcaption>Print real que já está no tutorial do Hub: uma pessoa gravando uma tarefa do dia a dia, em primeira pessoa, na cozinha.</figcaption>
+      </figure>
+    </div>
+  </section>
 
   <h2 class="passo" id="passo2">Passo 2 · Escolha onde ganhar em dólar</h2>
   <p class="choose-lead">Qual caminho é o seu</p>
