@@ -1,5 +1,5 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Painel</title><link rel="stylesheet" href="/assets/painel.css"></head>
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Painel</title><link rel="stylesheet" href="/assets/painel.css?v=2"></head>
 <body><main><h1>📊 Painel do site</h1><div id="p"></div><div class="sub"><a href="/admin.html">Entrar com login</a></div></main>
 <script>var m=location.hash.match(/k=([^&]+)/);if(m){localStorage.setItem('painel_k',m[1]);history.replaceState(null,'',location.pathname);}
 window.Painel={auth:function(){var k=localStorage.getItem('painel_k');return k?Promise.resolve({key:k}):Promise.reject()}};</script>
-<script src="/assets/painel.js"></script><script>Painel.start(document.getElementById('p'))</script></body></html>
+<script src="/assets/painel.js?v=2"></script><script>Painel.start(document.getElementById('p'))</script></body></html>
