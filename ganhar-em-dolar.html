@@ -18,98 +18,199 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
 <style>
-.g .road{list-style:none;padding:0;margin:0 0 22px;display:grid;gap:8px}
-.g .road a{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e3e3e3;border-radius:10px;background:#f7f7f7;color:#1f1a12;text-decoration:none;font-size:.92rem;line-height:1.3}
-.g .road .n{flex:0 0 30px;height:30px;border-radius:50%;background:#1f1a12;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-.g .road small{display:block;color:#666;font-size:.8rem}
-.g .passo{margin:34px 0 14px;padding:10px 14px;border-radius:10px;background:#1f1a12;color:#fff;font-size:1.05rem;text-align:center;letter-spacing:.02em}
-.g .chooser{display:grid;gap:10px;margin:0 0 22px}
-.g .chooser .cta{margin:0}
-.g .chooser .note{margin:-4px 0 4px;text-align:center}
-.g .cta.bgx{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;box-sizing:border-box;padding:18px 16px;font-size:1.12rem;font-weight:800;border-radius:14px;background:linear-gradient(135deg,#00c2cf,#008f9c);color:#fff;text-decoration:none;box-shadow:0 6px 18px rgba(0,168,181,.45);animation:bgxp 2.2s ease-in-out infinite}
-.g .cta.bgx:hover{filter:brightness(1.07)}
-@keyframes bgxp{0%,100%{box-shadow:0 6px 18px rgba(0,168,181,.4)}50%{box-shadow:0 6px 28px rgba(0,168,181,.8)}}
-@media (prefers-reduced-motion:reduce){.g .cta.bgx{animation:none}}
-.g .code{text-align:center;margin:8px 0 20px;font-size:.95rem;color:#333}
-.g .code b{display:inline-block;margin-left:4px;padding:3px 10px;border:2px dashed #00a8b5;border-radius:8px;color:#007a85;font-size:1.05rem;letter-spacing:.08em;background:#effbfc}
-.g .topcta{margin:0 0 22px;padding:14px;border:2px solid #00a8b5;border-radius:14px;background:#effbfc}
-.g .topcta p{margin:0 0 10px;text-align:center;font-size:.95rem}
-</style>
-<style>
-.benefit{font-size:14px;margin:6px 0 8px;font-weight:600}
-.bgrem{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#e6fbfb;border:1px solid #00c2c2;border-radius:12px;padding:10px 12px;margin:8px 0 14px;font-size:14px}
-.bgrem a{background:#00c2c2;color:#002b2b;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:999px;white-space:nowrap}
-#stickyBg{display:none}
-.road1{text-align:center;font-size:.85rem;margin:0 0 14px;color:#666}.road1 a{color:#1f1a12;text-decoration:none;font-weight:600}
-.codebar{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin:10px 0 0;font-size:.95rem}
-.codebar b{padding:3px 10px;border:2px dashed #00a8b5;border-radius:8px;color:#007a85;background:#effbfc;letter-spacing:.08em}
-.copy{border:1px solid #00a8b5;background:#fff;color:#007a85;font-weight:700;border-radius:999px;padding:6px 12px;font-size:.85rem;cursor:pointer}
-.iab{margin:10px 0 0;padding:8px 10px;border-radius:10px;background:#fff7e0;border:1px solid #f0d58a;font-size:.85rem;text-align:center}
-.g details{margin:10px 0}.g summary{cursor:pointer;font-weight:700}
+/* Overrides exclusivos desta página (body.plain) para não afetar o restante do site */
+html:has(body.plain){scroll-behavior:smooth}
+body.plain{overflow-wrap:break-word;color:#1b1b1b}
+body.plain .wrap{max-width:740px;margin:0 auto;padding:14px 18px 56px}
+@media (min-width:640px){body.plain .wrap{padding:28px 28px 72px}}
 
-.g .cta.merc{background:#1f2430;color:#fff}
-.g .jobs{display:grid;gap:12px;margin:14px 0 8px}
-.g .job{border:1px solid #e3e3e3;border-radius:12px;padding:14px 16px;background:#fff}
-.g .job h3{margin:0 0 8px;font-size:1.02rem;line-height:1.35;color:#1f1a12}
-.g .job p{margin:0 0 8px;font-size:.92rem;line-height:1.45}
-.g .job .cta{margin:10px 0 0}
-.g .aviso{margin:0 0 14px;padding:10px 12px;border-radius:10px;background:#f7f7f7;border:1px solid #e3e3e3;font-size:.88rem;line-height:1.45}
+/* Links, foco visível e alvos de toque */
+body.plain .g a{color:#006670;text-underline-offset:3px;overflow-wrap:anywhere}
+body.plain .g a:hover{color:#004a52}
+body.plain .g :is(a,button,summary,input):focus-visible,
+#stickyBg a:focus-visible{outline:3px solid #141414;outline-offset:2px;border-radius:6px}
 
-.g img.heroimg{display:block;width:100%;max-width:100%;height:auto;border-radius:12px;margin:4px 0 16px;border:1px solid #e3e3e3}
+body.plain .g .back{display:inline-flex;align-items:center;min-height:44px;margin:0 0 12px;padding:6px 4px;color:#4a4a4a;text-decoration:none;font-size:.92rem;font-weight:600}
+body.plain .g .back:hover{color:#141414;text-decoration:underline}
 
-.g figure.materia{margin:12px 0 18px;max-width:100%;text-align:center}
-.g figure.materia img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
-.g figure.materia figcaption{font-size:.82rem;color:#666;margin-top:8px;line-height:1.45;text-align:left}
+/* Tipografia e hierarquia de títulos */
+body.plain .g h1{font-size:clamp(1.65rem,1.25rem + 1.9vw,2.35rem);line-height:1.16;letter-spacing:-.02em;color:#141414;text-align:center;margin:0 0 16px;text-wrap:balance}
+body.plain .g .lead{text-align:center;color:#3d3d3d;font-size:clamp(1rem,.95rem + .25vw,1.1rem);line-height:1.55;max-width:56ch;margin:0 auto 14px;text-wrap:pretty}
+body.plain .g .road1{text-align:center;font-size:.9rem;line-height:1.65;margin:0 0 20px;color:#555}
+body.plain .g .road1 a{display:inline-block;padding:6px 4px;color:#181818;text-decoration:none;font-weight:700;overflow-wrap:break-word}
+body.plain .g .road1 a:hover{text-decoration:underline}
 
-.g .choose-lead{margin:0 0 16px;text-align:center;font-size:1.15rem;font-weight:700;color:#1f1a12;letter-spacing:-.01em}
-.g .chooser{display:grid;gap:16px;margin:0 0 26px}
-.g .pathcard{background:#fff;border:1px solid #e3e3e3;border-radius:16px;padding:18px 18px 16px;box-shadow:0 8px 22px rgba(20,20,20,.06)}
-.g .pathcard h3{margin:0 0 6px;padding:0;border:0;text-align:left;text-transform:none;letter-spacing:-.01em;font-size:1.15rem;font-weight:750;color:#1f1a12}
-.g .pathcard p{margin:0;color:#3d3d3d;font-size:.92rem;line-height:1.5}
-.g .pathcard .note{margin:10px 0 0;text-align:center}
-.g .pathcard .cta,.g .job .cta{margin:14px 0 0;min-height:48px;display:flex;align-items:center;justify-content:center;padding:14px 18px;border-radius:12px;font-weight:700;box-shadow:none;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
-.g .cta.hubc{background:#1f6b45;color:#fff}
-.g .cta.m1c{background:#5b3fa0;color:#fff}
-.g .cta.outc{background:#1f2a44;color:#fff}
-.g .cta.merc{background:#1f2430;color:#fff}
-.g .pathcard .cta:hover,.g .job .cta:hover,.g .cta.hubc:hover,.g .cta.m1c:hover,.g .cta.outc:hover,.g section .cta.merc:hover{filter:brightness(1.06);transform:translateY(-1px);box-shadow:0 6px 16px rgba(20,20,20,.12)}
-.g .pathcard .cta:focus-visible,.g .job .cta:focus-visible,.g .cta.merc:focus-visible,.g .cta.hubc:focus-visible,.g .cta.m1c:focus-visible,.g .cta.outc:focus-visible{outline:3px solid #1f1a12;outline-offset:3px;box-shadow:0 0 0 6px #fff}
-.g .jobs{display:grid;gap:18px;margin:16px 0 10px}
-.g .job{border:1px solid #e3e3e3;border-radius:16px;padding:18px 18px 16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
-.g .job h3{margin:0 0 10px;font-size:1.05rem;line-height:1.35;color:#1f1a12;font-weight:700}
-.g .job p{margin:0 0 8px;font-size:.92rem;line-height:1.5;color:#2c2c2c}
-.g .pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
-.g .pill{display:inline-block;font-size:.7rem;line-height:1;letter-spacing:.04em;text-transform:uppercase;border:1px solid #d8d8d8;border-radius:999px;padding:6px 9px;color:#333;background:#f5f5f5;font-weight:700}
-.g .job-pay{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
-.g .job-pay-value{font-size:1.35rem;line-height:1.15;font-weight:800;color:#1f1a12;letter-spacing:-.02em}
-.g .job-pay-note{font-size:.78rem;color:#555;font-weight:500}
-@media (prefers-reduced-motion:reduce){
-.g .pathcard .cta,.g .job .cta,.g .cta.hubc,.g .cta.m1c,.g .cta.outc{transition:none}
-.g .pathcard .cta:hover,.g .job .cta:hover,.g .cta.hubc:hover,.g .cta.m1c:hover,.g .cta.outc:hover,.g section .cta.merc:hover{transform:none}
+body.plain .g h2{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:clamp(1.22rem,1.08rem + .7vw,1.48rem);line-height:1.25;letter-spacing:-.015em;text-transform:none;font-weight:800;color:#141414;text-align:left;margin:0 0 14px;padding-bottom:8px;border-bottom:1px solid #e6e6e6;text-wrap:balance}
+body.plain .g h2.passo{margin:40px 0 18px;padding:13px 18px;border:0;border-radius:12px;background:#171717;color:#fff;font-size:clamp(1.05rem,.96rem + .45vw,1.22rem);line-height:1.3;text-align:center;letter-spacing:.01em;scroll-margin-top:16px}
+body.plain .g .box h2{border:0;padding:0;margin:0 0 10px;color:#8c1d18;font-size:clamp(1.1rem,1rem + .45vw,1.26rem)}
+body.plain .g .vid h2{text-align:center;border:0;padding:0;margin:0 0 12px}
+
+body.plain .g p,body.plain .g li{line-height:1.62;color:#242424;font-size:.98rem;text-wrap:pretty}
+body.plain .g p{margin:0 0 12px}
+body.plain .g ul,body.plain .g ol{padding-left:1.3rem;margin:0 0 12px}
+body.plain .g li{margin:0 0 10px}
+body.plain .g section{margin:0 0 32px;scroll-margin-top:16px}
+body.plain .g section#hub{margin-bottom:14px}
+body.plain .g .note{font-size:.88rem;line-height:1.5;color:#555}
+body.plain .g .disc{font-size:.82rem;color:#5c5c5c;text-align:center;line-height:1.55;margin-top:24px;padding-top:18px;border-top:1px solid #eaeaea}
+
+/* Mídia responsiva (hero, banner, prints de telefone e prints de páginas) */
+body.plain .g img,body.plain .g video{max-width:100%;height:auto}
+body.plain .g img.heroimg{display:block;width:100%;max-width:100%;height:auto;border-radius:14px;margin:4px 0 16px;border:1px solid #e3e3e3}
+body.plain .g img.shot{display:block;width:100%;max-width:100%;height:auto;border-radius:14px;margin:16px auto 24px;border:1px solid #e3e3e3}
+body.plain .g .vid{margin:10px 0 28px}
+body.plain .g .vid video{display:block;width:100%;max-width:420px;height:auto;margin:10px auto 10px;border-radius:16px;background:#f4f4f4;border:1px solid #e3e3e3}
+
+/* Prints gerais (Exame, Hub, micro1, Outlier) */
+body.plain .g figure.shot{margin:16px auto 18px;max-width:560px;width:100%;text-align:center}
+body.plain .g figure.shot img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+body.plain .g figure.shot figcaption{font-size:.84rem;color:#555;margin-top:8px;line-height:1.45;text-align:left}
+
+/* Prints de celular do tutorial Bitget (mantém proporção de telefone centralizada) */
+body.plain .g ol figure.shot{max-width:280px;margin:14px auto 10px}
+body.plain .g ol figure.shot img{border-radius:20px;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+body.plain .g ol figure.shot figcaption{text-align:center}
+
+body.plain .g figure.materia{margin:16px 0 20px;max-width:100%;text-align:center}
+body.plain .g figure.materia img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e3e3e3;box-shadow:0 6px 18px rgba(0,0,0,.08)}
+body.plain .g figure.materia figcaption{font-size:.84rem;color:#555;margin-top:8px;line-height:1.5;text-align:left}
+
+/* Bloco de destaque no topo e código de convite */
+body.plain .g .topcta{margin:0 0 24px;padding:18px 16px;border:2px solid #00a8b5;border-radius:16px;background:#effbfc}
+@media (min-width:640px){body.plain .g .topcta{padding:20px 22px}}
+body.plain .g .topcta p{margin:0 0 12px;text-align:center;font-size:.96rem;line-height:1.5}
+.benefit{font-size:.95rem;margin:0 0 12px;font-weight:600;color:#141414}
+.codebar{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin:12px 0 0;font-size:.95rem;color:#222}
+.codebar b{padding:5px 12px;border:2px dashed #008f9c;border-radius:8px;color:#00656e;background:#fff;letter-spacing:.08em}
+.copy{display:inline-flex;align-items:center;justify-content:center;min-height:44px;border:1.5px solid #008f9c;background:#fff;color:#00656e;font-weight:700;border-radius:999px;padding:10px 16px;font-size:.88rem;cursor:pointer;transition:background-color .15s ease,color .15s ease}
+.copy:hover{background:#e0f7f9}
+body.plain .g .code{text-align:center;margin:12px 0 20px;font-size:.95rem;color:#333}
+body.plain .g .code b{display:inline-block;margin-left:4px;padding:4px 12px;border:2px dashed #008f9c;border-radius:8px;color:#00656e;font-size:1.05rem;letter-spacing:.08em;background:#effbfc}
+.iab{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:#fff7e0;border:1px solid #f0d58a;font-size:.88rem;text-align:center;color:#332600}
+
+/* CTAs */
+body.plain .g .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:48px;padding:14px 18px;border-radius:12px;font-weight:700;text-align:center;line-height:1.3;text-decoration:none;overflow-wrap:break-word;transition:transform .15s ease,box-shadow .15s ease,filter .15s ease}
+body.plain .g .cta.bgx{gap:10px;padding:16px 18px;min-height:54px;font-size:1.08rem;font-weight:800;border-radius:14px;background:linear-gradient(135deg,#00a6b3,#007883);color:#fff;box-shadow:0 6px 18px rgba(0,140,152,.38);animation:bgxp 2.2s ease-in-out infinite}
+body.plain .g .cta.bgx:hover{filter:brightness(1.06);color:#fff}
+@keyframes bgxp{0%,100%{box-shadow:0 6px 18px rgba(0,140,152,.35)}50%{box-shadow:0 6px 26px rgba(0,140,152,.65)}}
+body.plain .g .cta.btcb{background:#007d88;color:#fff}
+body.plain .g .cta.btcb:hover{filter:brightness(1.06);color:#fff}
+body.plain .g .cta.alt{background:#7a4f12;color:#fff}
+body.plain .g .cta.alt:hover{filter:brightness(1.08);color:#fff}
+body.plain .g .cta.merc{background:#1f2430;color:#fff}
+body.plain .g .cta.hubc{background:#1f6b45;color:#fff}
+body.plain .g .cta.m1c{background:#5b3fa0;color:#fff}
+body.plain .g .cta.outc{background:#1f2a44;color:#fff}
+body.plain .g .cta.alignc{background:#16324f;color:#fff}
+body.plain .g .cta:is(.merc,.hubc,.m1c,.outc,.alignc):hover{filter:brightness(1.08);transform:translateY(-1px);box-shadow:0 6px 16px rgba(20,20,20,.14);color:#fff}
+
+/* Lembrete Bitget */
+.bgrem{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#effbfc;border:1px solid #9adce1;border-radius:12px;padding:12px 14px;margin:10px 0 16px;font-size:.92rem;line-height:1.45;color:#143033}
+.bgrem span{flex:1 1 220px;min-width:0}
+.bgrem a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:10px 16px;border-radius:999px;white-space:nowrap;overflow-wrap:normal;transition:filter .15s ease}
+.bgrem a:hover{filter:brightness(.95);color:#002b2b}
+
+/* Caixas de atenção e FAQ */
+body.plain .g .box{background:#fff7f6;border:1px solid #efd6d3;border-left:4px solid #a3201a;border-radius:12px;padding:18px 18px 14px}
+body.plain .g details{margin:8px 0;border-top:1px solid rgba(163,32,26,.12);padding-top:4px}
+body.plain .g details:first-of-type{border-top:0;padding-top:0}
+body.plain .g summary{cursor:pointer;font-weight:700;color:#1f1a12;padding:10px 4px;line-height:1.4}
+body.plain .g details p,body.plain .g details ul{margin-top:6px}
+
+/* Checklist */
+body.plain .g .chk{margin:0 0 26px;padding:18px 16px 16px;border:1px solid #e3e5e8;border-radius:16px;background:#f7f7f8}
+@media (min-width:640px){body.plain .g .chk{padding:20px 20px 18px}}
+body.plain .g .chk-status{margin:0 0 14px;text-align:center;font-weight:800;font-size:1.05rem;color:#141414;letter-spacing:-.01em}
+body.plain .g .chk ol{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+body.plain .g .chk li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 10px 6px 12px;margin:0;border:1px solid #e5e7eb;border-radius:12px;background:#fff;flex-wrap:wrap}
+body.plain .g .chk label{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:600;color:#181818;cursor:pointer;flex:1 1 180px;min-width:0}
+body.plain .g .chk input{width:20px;height:20px;flex:0 0 20px;accent-color:#141414;cursor:pointer}
+body.plain .g .chk a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:6px 12px;border-radius:10px;background:#effbfc;font-size:.86rem;color:#006670;font-weight:700;white-space:nowrap;text-decoration:none;overflow-wrap:normal}
+body.plain .g .chk a:hover{background:#ddf4f6;text-decoration:underline}
+body.plain .g .chk li:has(input:checked){background:#effbfc;border-color:#9adce1}
+body.plain .g .chk button[type=reset]{display:block;min-height:44px;margin:14px auto 0;border:1px solid #c9cdd2;background:#fff;color:#333;border-radius:999px;padding:10px 18px;font-size:.88rem;font-weight:600;cursor:pointer}
+body.plain .g .chk button[type=reset]:hover{background:#f0f1f3}
+body.plain .g .chk-note{margin:10px 0 0;text-align:center;font-size:.8rem;color:#5c5c5c;line-height:1.45}
+
+/* Prova social (Na imprensa e na prática) */
+body.plain .g .prova{container-type:inline-size;container-name:prova;margin:12px 0 32px;padding:20px 16px 18px;border:1px solid #e3e5e8;border-radius:16px;background:#f7f7f8}
+@media (min-width:640px){body.plain .g .prova{padding:24px 22px 22px}}
+body.plain .g .prova h2{margin:0 0 8px;padding:0;border:0;text-align:center;font-size:clamp(1.2rem,1.08rem + .5vw,1.38rem)}
+body.plain .g .prova-lead{margin:0 auto 18px;max-width:56ch;text-align:center;font-size:.93rem;color:#444;line-height:1.5}
+body.plain .g .prova-grid{display:grid;grid-template-columns:1fr;gap:16px}
+body.plain .g .prova-grid figure{margin:0;padding:14px;border:1px solid #e5e7eb;border-radius:14px;background:#fff;display:grid;grid-template-columns:1fr;gap:12px;align-items:start}
+body.plain .g .prova-grid img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid #e3e3e3}
+body.plain .g .prova-grid figcaption{margin:0;font-size:.88rem;color:#3d3d3d;line-height:1.52;text-align:left}
+@container prova (min-width:560px){
+  body.plain .g .prova-grid figure{grid-template-columns:minmax(220px,250px) 1fr;gap:18px;align-items:center}
 }
 
-.g .chk{margin:0 0 22px;padding:16px 16px 14px;border:1px solid #e3e3e3;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
-.g .chk-status{margin:0 0 12px;text-align:center;font-weight:800;font-size:1.02rem;color:#1f1a12;letter-spacing:-.01em}
-.g .chk ol{list-style:none;padding:0;margin:0;display:grid;gap:8px}
-.g .chk li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid #eee;border-radius:12px;background:#fafafa;flex-wrap:wrap}
-.g .chk label{display:flex;align-items:center;gap:10px;font-weight:600;color:#1f1a12;cursor:pointer;flex:1;min-width:0}
-.g .chk input{width:18px;height:18px;flex:0 0 18px;accent-color:#1f1a12}
-.g .chk a{font-size:.82rem;color:#007a85;font-weight:600;white-space:nowrap;text-decoration:none}
-.g .chk li:has(input:checked){background:#effbfc;border-color:#bfe6ea}
-.g .chk button[type=reset]{display:block;margin:12px auto 0;border:1px solid #ccc;background:#fff;color:#444;border-radius:999px;padding:6px 14px;font-size:.85rem;cursor:pointer}
-.g .chk-note{margin:10px 0 0;text-align:center;font-size:.78rem;color:#666;line-height:1.4}
+/* Chooser (Mercor, Hub, micro1, Outlier) — 1 col no celular, 2x2 no desktop */
+body.plain .g .choose-lead{margin:0 0 16px;text-align:center;font-size:1.15rem;font-weight:700;color:#141414;letter-spacing:-.01em}
+body.plain .g .chooser{display:grid;grid-template-columns:1fr;gap:14px;margin:0 0 24px}
+@media (min-width:640px){body.plain .g .chooser{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+body.plain .g .pathcard{display:flex;flex-direction:column;background:#f7f7f8;border:1px solid #e3e5e8;border-radius:16px;padding:18px 18px 16px}
+body.plain .g .pathcard h3{margin:0 0 8px;padding:0;border:0;text-align:left;text-transform:none;letter-spacing:-.01em;font-size:1.16rem;font-weight:800;color:#141414}
+body.plain .g .pathcard p{margin:0;color:#383838;font-size:.93rem;line-height:1.52}
+body.plain .g .pathcard .cta{margin:auto 0 0;padding-top:14px;padding-bottom:14px}
+body.plain .g .pathcard p + .cta{margin-top:16px}
+body.plain .g .pathcard .note{margin:10px 0 0;text-align:center;font-size:.84rem}
 
-.g .prova{margin:8px 0 28px;padding:18px 16px 16px;border:1px solid #e3e3e3;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(20,20,20,.06)}
-.g .prova h2{margin:0 0 8px;text-align:center;font-size:1.15rem}
-.g .prova-lead{margin:0 0 14px;text-align:center;font-size:.92rem;color:#444;line-height:1.45}
-.g .prova-grid{display:grid;gap:16px}
-@media (min-width:900px){.g .prova-grid{grid-template-columns:repeat(3,1fr);align-items:start}}
-.g .prova-grid figure{margin:0}
-.g .prova-grid img{width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e3e3e3}
-.g .prova-grid figcaption{margin-top:8px;font-size:.82rem;color:#555;line-height:1.45}
-@media (max-width:700px){#stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);box-shadow:0 -2px 10px rgba(0,0,0,.12);transition:transform .25s}
-#stickyBg.hide{transform:translateY(110%)}#stickyBg a{display:block;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;text-decoration:none;padding:12px;border-radius:12px}
-body{padding-bottom:76px}}
+/* Resumo rápido (.facts) */
+body.plain .g .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0 22px;padding:0;list-style:none}
+@media (min-width:640px){body.plain .g .facts{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}}
+body.plain .g .facts li{background:#f7f7f8;border:1px solid #e3e5e8;border-radius:12px;padding:12px;margin:0;font-size:.88rem;line-height:1.38;color:#3d3d3d}
+body.plain .g .facts b{display:block;font-size:1.02rem;color:#141414;margin-bottom:2px}
+
+/* Cards de vagas Mercor */
+body.plain .g .aviso{margin:0 0 16px;padding:12px 14px;border-radius:12px;background:#f7f7f8;border:1px solid #e3e5e8;font-size:.9rem;line-height:1.5}
+body.plain .g .jobs{display:grid;gap:16px;margin:16px 0 14px}
+body.plain .g .job{border:1px solid #e3e5e8;border-radius:16px;padding:18px 18px 16px;background:#f7f7f8}
+body.plain .g .job h3{margin:0 0 10px;font-size:1.08rem;line-height:1.35;color:#141414;font-weight:800;text-wrap:balance}
+body.plain .g .job p{margin:0 0 8px;font-size:.94rem;line-height:1.55;color:#282828}
+body.plain .g .job .cta{margin:14px 0 0}
+body.plain .g .pills{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+body.plain .g .pill{display:inline-block;font-size:.72rem;line-height:1.1;letter-spacing:.04em;text-transform:uppercase;border:1px solid #d5d8dc;border-radius:999px;padding:6px 10px;color:#2d2d2d;background:#fff;font-weight:700}
+body.plain .g .job-pay{margin:0 0 12px;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px}
+body.plain .g .job-pay-value{font-size:1.35rem;line-height:1.15;font-weight:800;color:#141414;letter-spacing:-.02em}
+body.plain .g .job-pay-note{font-size:.82rem;color:#505050;font-weight:500}
+
+/* Seção Alignerr (passo a passo ilustrado) */
+body.plain .g .alignerr{margin:12px 0 36px;scroll-margin-top:16px}
+body.plain .g .alignerr-card{background:#f7f7f8;border:1px solid #e3e5e8;border-radius:16px;padding:18px 16px 16px;margin:0 0 18px}
+@media (min-width:640px){body.plain .g .alignerr-card{padding:20px 20px 18px}}
+body.plain .g .alignerr-card h3{margin:0 0 10px;padding:0;border:0;text-align:left;text-transform:none;letter-spacing:-.01em;font-size:1.12rem;line-height:1.32;font-weight:800;color:#141414;text-wrap:balance}
+body.plain .g .alignerr-card p{margin:0 0 10px;font-size:.95rem;line-height:1.55;color:#282828}
+body.plain .g .alignerr-card .cta{margin:14px 0 0}
+body.plain .g ol.alignerr-steps{list-style:none;padding:0;margin:0 0 18px;display:grid;gap:16px}
+body.plain .g .alignerr-step{background:#f7f7f8;border:1px solid #e3e5e8;border-radius:16px;padding:16px;margin:0}
+@media (min-width:640px){body.plain .g .alignerr-step{padding:18px 20px}}
+body.plain .g .alignerr-step-head{display:flex;align-items:center;gap:10px;margin:0 0 8px}
+body.plain .g .alignerr-num{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;border-radius:999px;background:#171717;color:#fff;font-size:.82rem;font-weight:800;line-height:1}
+body.plain .g .alignerr-step-head h3{margin:0;padding:0;border:0;text-align:left;text-transform:none;letter-spacing:-.01em;font-size:1.03rem;line-height:1.3;font-weight:800;color:#141414}
+body.plain .g .alignerr-step p{margin:0 0 12px;font-size:.94rem;line-height:1.55;color:#282828}
+body.plain .g .alignerr-figs{display:grid;gap:12px}
+body.plain .g .alignerr-fig{margin:0}
+body.plain .g .alignerr-fig img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid #d9dde2;background:#fff}
+body.plain .g .alignerr-fig figcaption{margin:6px 0 0;font-size:.84rem;line-height:1.45;color:#505050;text-align:left}
+body.plain .g .alignerr-foot{background:#f7f7f8;border:1px solid #e3e5e8;border-radius:16px;padding:16px}
+body.plain .g .alignerr-foot .cta{margin:0}
+
+@media (prefers-reduced-motion:reduce){
+  html:has(body.plain){scroll-behavior:auto}
+  body.plain .g .cta,body.plain .g .cta.bgx,.copy,.bgrem a{animation:none;transition:none}
+  body.plain .g .cta:is(.merc,.hubc,.m1c,.outc,.alignc):hover{transform:none}
+}
+
+/* Barra fixa inferior no celular */
+#stickyBg{display:none}
+@media (max-width:700px){
+  html:has(body.plain){scroll-padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  body.plain{padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  #stickyBg{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(255,255,255,.97);border-top:1px solid #e5e7eb;box-shadow:0 -4px 14px rgba(0,0,0,.1);transition:transform .25s ease}
+  #stickyBg.hide{transform:translateY(115%);pointer-events:none}
+  #stickyBg a{display:flex;align-items:center;justify-content:center;min-height:46px;text-align:center;background:#00c2c2;color:#002b2b;font-weight:800;font-size:.98rem;text-decoration:none;padding:12px 14px;border-radius:12px}
+}
 </style>
 </head>
 <body class="plain">
@@ -226,6 +327,134 @@ body{padding-bottom:76px}}
     </div>
   </section>
 
+  <section id="alignerr" class="alignerr">
+    <h2>Alignerr: passo a passo para se candidatar</h2>
+    <article class="alignerr-card">
+      <div class="pills"><span class="pill">Remota</span><span class="pill">Pagamento por hora</span><span class="pill">10 a 40 h/semana</span><span class="pill">Sem experiência com IA</span></div>
+      <h3>Brazilian Portuguese Audio Transcriptionist (AI Training)</h3>
+      <p class="job-pay"><span class="job-pay-value">US$ 10–35/h</span> <span class="job-pay-note">remota · pagamento por hora · 10 a 40 h/semana</span></p>
+      <p>Vaga remota na Alignerr, com pagamento por hora, de 10 a 40 horas por semana e sem precisar de experiência com IA. Veja abaixo cada tela do cadastro.</p>
+      <a class="cta alignc" href="https://www.alignerr.com/jobs/f8eb57f7-d016-4ddb-b401-71242fcbf4d2" target="_blank" rel="noopener" data-track="Alignerr · vaga">Abrir vaga na Alignerr</a>
+    </article>
+
+    <ol class="alignerr-steps">
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">1</span><h3>Abra a vaga e clique em Apply</h3></div>
+        <p>Acesse a página da vaga na Alignerr e clique no botão <b>Apply</b>.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/01-vaga.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Página da vaga Brazilian Portuguese Audio Transcriptionist na Alignerr com o botão Apply">
+          <figcaption>Tela da vaga na Alignerr com o botão Apply para iniciar a candidatura.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">2</span><h3>Aceite os termos</h3></div>
+        <p>Na tela de entrada, marque o aceite dos <b>termos</b>. Não dá para entrar por e-mail.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/02-login-google-linkedin.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Tela de login da Alignerr com opções para entrar com Google ou LinkedIn">
+          <figcaption>Tela de entrada da Alignerr: aceite os termos antes de continuar. Não dá para entrar por e-mail.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">3</span><h3>Entre com Google ou LinkedIn</h3></div>
+        <p>Com os termos marcados, entre com a conta do <b>Google</b> ou do <b>LinkedIn</b>.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/03-termos-marcados.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Tela de termos da Alignerr com as caixas de aceite marcadas">
+          <figcaption>Com os termos já marcados, entre com Google ou LinkedIn.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">4</span><h3>Envie o currículo em PDF (obrigatório)</h3></div>
+        <p>Faça o upload do seu currículo em <b>PDF</b>. Esta etapa é obrigatória.</p>
+        <div class="alignerr-figs">
+          <figure class="alignerr-fig">
+            <img src="img/alignerr/04-curriculo-obrigatorio.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Etapa de envio obrigatório de currículo em PDF na Alignerr">
+            <figcaption>Tela de envio de currículo solicitando o arquivo em PDF.</figcaption>
+          </figure>
+          <figure class="alignerr-fig">
+            <img src="img/alignerr/05-curriculo-enviado.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Tela da Alignerr confirmando o envio do currículo em PDF">
+            <figcaption>Confirmação de currículo em PDF enviado na plataforma.</figcaption>
+          </figure>
+        </div>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">5</span><h3>Preencha o perfil básico (obrigatório)</h3></div>
+        <p>Informe <b>nome</b>, <b>gênero</b> e <b>data de nascimento</b>. Os três campos são obrigatórios.</p>
+        <div class="alignerr-figs">
+          <figure class="alignerr-fig">
+            <img src="img/alignerr/06-perfil-obrigatorio.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Formulário de perfil na Alignerr com campos obrigatórios de nome, gênero e data de nascimento">
+            <figcaption>Campos obrigatórios do perfil: nome, gênero e data de nascimento.</figcaption>
+          </figure>
+          <figure class="alignerr-fig">
+            <img src="img/alignerr/07-perfil-preenchido.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Formulário de perfil preenchido na Alignerr pronto para avançar">
+            <figcaption>Etapa de perfil preenchida para continuar o cadastro.</figcaption>
+          </figure>
+        </div>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">6</span><h3>Informe o celular com +55 (obrigatório)</h3></div>
+        <p>Cadastre seu número de celular com o código do Brasil (<b>+55</b>). É obrigatório.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/09-telefone.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Campo de telefone na Alignerr com código do país +55 selecionado">
+          <figcaption>Etapa de telefone com o código do Brasil (+55).</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">7</span><h3>Selecione a localização: Brasil</h3></div>
+        <p>Na etapa de localização, selecione o país <b>Brasil</b>.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/10-localizacao.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Etapa de localização na Alignerr com o país Brasil selecionado">
+          <figcaption>Seleção de localização configurada para Brasil.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">8</span><h3>LinkedIn (opcional)</h3></div>
+        <p>Se quiser, adicione o endereço do seu perfil no <b>LinkedIn</b>. Esta etapa é opcional.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/11-linkedin-opcional.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Etapa opcional de perfil do LinkedIn na Alignerr">
+          <figcaption>Campo opcional de LinkedIn: preencha se desejar ou siga adiante.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">9</span><h3>Formação (opcional)</h3></div>
+        <p>Informe dados de <b>formação</b> se quiser. Esta etapa também é opcional.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/12-educacao-opcional.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Etapa opcional de formação acadêmica na Alignerr">
+          <figcaption>Tela opcional de formação: preencha ou avance para a próxima etapa.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">10</span><h3>Idiomas: Portuguese, nível Native</h3></div>
+        <p>Selecione o idioma <b>Portuguese</b> e marque o nível <b>Native</b>.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/13-idiomas.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Tela de idiomas na Alignerr com Portuguese selecionado no nível Native">
+          <figcaption>Etapa de idiomas configurada com Portuguese no nível Native.</figcaption>
+        </figure>
+      </li>
+
+      <li class="alignerr-step">
+        <div class="alignerr-step-head"><span class="alignerr-num">11</span><h3>Marque as preferências e clique em Complete</h3></div>
+        <p>Marque os tipos de projeto desejados (por exemplo, <b>Language</b>) e clique em <b>Complete</b>.</p>
+        <figure class="alignerr-fig">
+          <img src="img/alignerr/14-preferencias.webp" width="1280" height="714" loading="lazy" decoding="async" alt="Tela de preferências de projeto na Alignerr com Language marcado e botão Complete">
+          <figcaption>Escolha os tipos de projeto, como Language, e clique em Complete para concluir.</figcaption>
+        </figure>
+      </li>
+    </ol>
+
+    <div class="alignerr-foot">
+      <a class="cta alignc" href="https://www.alignerr.com/jobs/f8eb57f7-d016-4ddb-b401-71242fcbf4d2" target="_blank" rel="noopener" data-track="Alignerr · vaga · fim">Abrir vaga na Alignerr</a>
+    </div>
+  </section>
+
   <h2 class="passo" id="passo2">Passo 2 · Escolha onde ganhar em dólar</h2>
   <p class="choose-lead">Qual caminho é o seu</p>
   <div class="chooser">
@@ -281,7 +510,7 @@ body{padding-bottom:76px}}
     <p>Em 10 de novembro de 2026, a Mercor anunciou no <a href="https://www.mercor.com/blog/series-d/" target="_blank" rel="noopener">blog oficial</a> uma rodada Série D de US$ 750 milhões, com avaliação de US$ 20 bilhões, e listou a NVIDIA entre os investidores. No anúncio, a empresa escreveu: «Today, we're announcing our $750 million Series D valuing Mercor at $20 billion», com participação da NVIDIA, da Benchmark, da Salesforce, da Zoom e de outros investidores.</p>
     <p>No mesmo dia, a <b>Reuters</b> informou que «Mercor said on Tuesday it had raised $750 million in a funding round that valued the AI training startup at $20 billion» e que «The Series D round drew participation from Benchmark, Felicis, Fundomo, Nvidia and funds managed by affiliates of Apollo, among others.»</p>
     <figure class="materia">
-      <a href="https://economictimes.indiatimes.com/tech/funding/ai-training-startup-mercor-valued-at-20-billion-in-latest-funding-round/articleshow/135715625.cms" target="_blank" rel="noopener"><img src="assets/ganhos/mercor-economictimes-serie-d.webp" width="1200" height="561" alt="Print da matéria do The Economic Times de 10 de novembro de 2026: Mercor avaliada em US$ 20 bilhões, com participação da Nvidia"></a>
+      <a href="https://economictimes.indiatimes.com/tech/funding/ai-training-startup-mercor-valued-at-20-billion-in-latest-funding-round/articleshow/135715625.cms" target="_blank" rel="noopener"><img src="assets/ganhos/mercor-economictimes-serie-d.webp" width="1200" height="561" alt="Print da matéria do The Economic Times de 10 de novembro de 2026: Mercor avaliada em US$ 20 bilhões, com participação da Nvidia" loading="lazy"></a>
       <figcaption>Print da matéria do <a href="https://economictimes.indiatimes.com/tech/funding/ai-training-startup-mercor-valued-at-20-billion-in-latest-funding-round/articleshow/135715625.cms" target="_blank" rel="noopener">The Economic Times</a> de 10/11/2026 (crédito Reuters), com o título, a data e o trecho que cita os US$ 750 milhões, a avaliação de US$ 20 bilhões e a participação da Nvidia. <a href="https://www.mercor.com/blog/series-d/" target="_blank" rel="noopener">Anúncio oficial da Mercor</a>, na mesma data.</figcaption>
     </figure>
   </section>
@@ -556,9 +785,9 @@ document.querySelectorAll('.hubc').forEach(a => a.href = HUB_URL);
 
 </script>
 <div id="stickyBg" class="hide"><a href="https://web3.bitget.com/share/DcJI?inviteCode=HERNANDES" target="_blank" rel="sponsored noopener" data-track="Bitget · barra fixa">💳 Abrir conta em dólar · Bitget</a></div>
-<script>(function(){var b=document.getElementById('stickyBg');var t=[document.getElementById('mainBitget'),document.querySelector('.topcta'),document.getElementById('endBitget')].filter(Boolean);var v=new Set();
-var o=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?v.add(e.target):v.delete(e.target)});b.classList.toggle('hide',v.size>0||scrollY<200)});t.forEach(function(x){o.observe(x)});
-addEventListener('scroll',function(){b.classList.toggle('hide',v.size>0||scrollY<200)},{passive:true})})();</script>
+<script>(function(){var b=document.getElementById('stickyBg');var t=[document.getElementById('mainBitget'),document.querySelector('.topcta'),document.getElementById('chkPassos'),document.getElementById('endBitget')].filter(Boolean);var v=new Set();
+var o=new IntersectionObserver(function(es){es.forEach(function(e){e.isIntersecting?v.add(e.target):v.delete(e.target)});b.classList.toggle('hide',v.size>0||scrollY<260)});t.forEach(function(x){o.observe(x)});
+addEventListener('scroll',function(){b.classList.toggle('hide',v.size>0||scrollY<260)},{passive:true})})();</script>
 <script>(function(){document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){var d=function(){b.textContent='Copiado ✓';setTimeout(function(){b.textContent='Copiar código'},2000)};
 if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText('HERNANDES').then(d,function(){prompt('Copie o código:','HERNANDES')})}else{prompt('Copie o código:','HERNANDES')}})});
 if(/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent)){var t=document.getElementById('iabTip');if(t)t.hidden=false}})();</script>
